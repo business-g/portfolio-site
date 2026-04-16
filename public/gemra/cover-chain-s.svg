@@ -1,0 +1,27 @@
+<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 43.4714 21.6298" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Group">
+<g id="Vector" filter="url(#filter0_n_0_4)">
+<path d="M30.0548 7.18342C24.9757 8.17751 20.16 7.48959 15.6079 5.11993C14.2774 4.13601 11.6066 1.73453 11.5672 0L2.84803 4.53981C1.14655 5.42573 0.132184 7.33063 0.821562 9.12079C1.72303 11.4617 3.21202 13.4812 5.28862 15.1795C12.4435 20.3428 20.4409 22.4063 29.2809 21.3699C34.2181 21.1043 38.7759 19.6856 42.9539 17.114C43.3176 16.3402 43.4897 15.5233 43.4699 14.6636C43.1618 11.9408 42.1727 9.49041 40.5031 7.31239C39.3636 5.77509 37.8588 5.04435 35.9884 5.11993C34.1018 6.06398 32.1238 6.75189 30.0548 7.18342Z" fill="var(--fill-0, #CAB9FE)"/>
+<path d="M11.3184 0.481445C11.4007 0.838073 11.5571 1.19913 11.7568 1.54883C12.048 2.05843 12.442 2.57007 12.8701 3.0498C13.7262 4.00919 14.7435 4.86938 15.4219 5.37109L15.4414 5.38574L15.4639 5.39746C20.0792 7.79996 24.9674 8.49777 30.1152 7.49023L30.1182 7.48926C32.189 7.05735 34.17 6.37059 36.0605 5.43164C37.7969 5.37792 39.1846 6.05825 40.252 7.49805L40.2549 7.50293C41.8867 9.63163 42.8525 12.0229 43.1562 14.6826C43.1725 15.459 43.0222 16.1952 42.707 16.8965C38.5962 19.4087 34.117 20.7965 29.2637 21.0576L29.2441 21.0596C20.4828 22.0867 12.5653 20.0437 5.47559 14.9287C3.44372 13.2643 1.99236 11.2914 1.11328 9.00879C0.495836 7.40542 1.39225 5.65058 2.99219 4.81738L11.3184 0.481445Z" stroke="var(--stroke-0, #030303)" stroke-width="0.625"/>
+</g>
+<path id="Vector_2" opacity="0.2" d="M40.8091 15.3226C40.8091 15.3226 40.8091 15.3226 40.8091 15.3226C40.3134 15.6033 39.8096 15.8684 39.2985 16.1166C36.0997 17.6791 32.6005 18.5346 29.0779 18.6807L29.0598 18.6823C27.5211 18.8469 25.9781 18.9132 24.4349 18.8653C19.3647 18.7311 14.358 17.225 9.97864 14.5782C9.49014 14.2857 9.01077 13.9822 8.53564 13.665C8.98639 14.016 9.44433 14.3529 9.91433 14.678C14.1203 17.6215 19.2337 19.3577 24.4155 19.49C25.9916 19.5389 27.5658 19.4552 29.1271 19.2564L29.1089 19.258C32.7055 19.0384 36.2518 18.001 39.3538 16.2217C39.8499 15.939 40.3352 15.6388 40.8091 15.3226Z" fill="var(--stroke-0, black)"/>
+</g>
+<defs>
+<filter id="filter0_n_0_4" x="0.603068" y="0" width="42.8683" height="21.6298" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feTurbulence type="fractalNoise" baseFrequency="4.2188420295715332 4.2188420295715332" stitchTiles="stitch" numOctaves="3" result="noise" seed="711" />
+<feColorMatrix in="noise" type="luminanceToAlpha" result="alphaNoise" />
+<feComponentTransfer in="alphaNoise" result="coloredNoise1">
+<feFuncA type="discrete" tableValues="1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 "/>
+</feComponentTransfer>
+<feComposite operator="in" in2="shape" in="coloredNoise1" result="noise1Clipped" />
+<feFlood flood-color="rgba(229, 229, 229, 0.15)" result="color1Flood" />
+<feComposite operator="in" in2="noise1Clipped" in="color1Flood" result="color1" />
+<feMerge result="effect1_noise_0_4">
+<feMergeNode in="shape" />
+<feMergeNode in="color1" />
+</feMerge>
+</filter>
+</defs>
+</svg>

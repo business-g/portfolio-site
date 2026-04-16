@@ -1,5 +1,7 @@
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
+import { HomeActionButtons } from "@/components/HomeActionButtons";
+import { HomePortfolioContent } from "@/components/HomePortfolioContent";
+import { UpButton } from "@/components/UpButton";
 
 const stackItems = [
   {
@@ -50,9 +52,12 @@ function InlineArrowRight() {
 
 export default function Home() {
   return (
-    <main className="relative min-h-screen overflow-x-hidden bg-[var(--page-background)] pb-24">
-      <section className="mx-auto max-w-[1512px] px-6 pt-[4.5rem] lg:px-12">
-        <div className="mx-auto max-w-[584px]">
+    <main
+      id="top"
+      className="relative min-h-screen overflow-x-hidden bg-[var(--page-background)] pb-8"
+    >
+      <section className="mx-auto max-w-[1512px] px-4 pt-4 md:px-6 md:pt-[4.5rem] lg:px-12">
+        <div className="mx-auto w-full md:max-w-[584px]">
           <div className="relative inline-flex">
             <Image
               src="/site-avatar-main.png"
@@ -91,24 +96,14 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="mt-6 flex flex-wrap gap-3">
-            <Button href="#" tone="primary">
-              Telegram
-            </Button>
-            <Button href="#" tone="secondary">
-              View CV
-            </Button>
-            <Button href="mailto:hello@example.com" tone="secondary">
-              Copy Email
-            </Button>
-          </div>
+          <HomeActionButtons />
 
-          <div className="relative mt-16 h-[79px] text-[var(--text-body)]">
+          <div className="relative mt-12 h-[105px] text-[var(--text-body)] md:mt-16 md:h-[79px]">
             <span className="type-caption absolute left-0 top-0 uppercase">
               Stack
             </span>
             <span className="absolute left-12 top-2 h-px w-[calc(100%-3rem)] bg-[var(--border-soft)]" />
-            <div className="absolute left-0 top-8 flex flex-nowrap items-center gap-5">
+            <div className="absolute left-0 top-7 flex w-[calc(100%-4px)] flex-wrap items-center gap-x-5 gap-y-3 md:top-8 md:w-auto md:flex-nowrap">
               {stackItems.map((item) => (
                 <div
                   key={item.label}
@@ -129,31 +124,12 @@ export default function Home() {
             </div>
             <span className="absolute inset-x-0 bottom-0 h-px bg-[var(--border-soft)]" />
           </div>
-
-          <div className="mt-16 inline-flex rounded-full bg-[var(--surface-elevated)] p-0.5">
-            <div className="type-body-medium flex items-center gap-2 rounded-full bg-white px-4 py-2 text-[var(--text-strong)] shadow-[var(--shadow-soft)]">
-              <span className="type-caption">◔</span>
-              Visual
-            </div>
-            <div className="type-body-medium flex items-center gap-2 px-4 py-2 text-[var(--text-body)]">
-              <span className="type-caption">⌲</span>
-              Case stuides
-            </div>
-          </div>
         </div>
+        <HomePortfolioContent />
 
       </section>
 
-      <button
-        type="button"
-        aria-label="Scroll to top"
-        className="fixed bottom-6 left-6 flex h-[77px] w-[126px] items-start justify-center rounded-t-[40px] rounded-b-[28px] bg-[radial-gradient(circle_at_top,#f7f7f7,rgba(245,245,245,0.88)_55%,rgba(245,245,245,0.1)_100%)]"
-      >
-        <span className="mt-3 text-[1.25rem] text-[var(--text-muted)]">↑</span>
-        <span className="type-caption absolute bottom-3 rounded-[4px] bg-white px-2 py-1 text-[var(--text-body)] shadow-[var(--shadow-soft)]">
-          W
-        </span>
-      </button>
+      <UpButton />
     </main>
   );
 }
