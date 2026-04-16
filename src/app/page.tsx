@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import Image from "next/image";
 import { HomeActionButtons } from "@/components/HomeActionButtons";
 import { HomePortfolioContent } from "@/components/HomePortfolioContent";
@@ -125,7 +126,9 @@ export default function Home() {
             <span className="absolute inset-x-0 bottom-0 h-px bg-[var(--border-soft)]" />
           </div>
         </div>
-        <HomePortfolioContent />
+        <Suspense fallback={null}>
+          <HomePortfolioContent />
+        </Suspense>
 
       </section>
 
