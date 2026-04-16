@@ -152,7 +152,8 @@ export function HomePortfolioContent() {
                   alt={shot.alt}
                   width={shot.width}
                   height={shot.height}
-                  unoptimized
+                  unoptimized={shot.src.endsWith(".svg")}
+                  sizes="(max-width: 1024px) 100vw, 1000px"
                   className="block h-auto w-full"
                 />
               )}
@@ -171,6 +172,7 @@ export function HomePortfolioContent() {
                 alt="Gemra staking platform case study cover"
                 width={1000}
                 height={675}
+                sizes="(max-width: 1024px) 100vw, 1000px"
                 className="block h-auto w-full rounded-[16px] transition-transform duration-[240ms] ease-[ease] will-change-transform group-hover:scale-[1.01] motion-reduce:transition-none motion-reduce:group-hover:scale-100 md:rounded-[24px]"
               />
             </Link>
@@ -203,6 +205,7 @@ export function HomePortfolioContent() {
                 alt="Wawen router admin panel case study cover"
                 width={1622}
                 height={1080}
+                sizes="(max-width: 1024px) 100vw, 1000px"
                 className="block h-auto w-full rounded-[16px] transition-transform duration-[240ms] ease-[ease] will-change-transform group-hover:scale-[1.01] motion-reduce:transition-none motion-reduce:group-hover:scale-100 md:rounded-[24px]"
               />
             </Link>
@@ -229,6 +232,7 @@ export function HomePortfolioContent() {
                 alt="KelVPN application case study cover"
                 width={1152}
                 height={768}
+                sizes="(max-width: 1024px) 100vw, 1000px"
                 className="block h-auto w-full rounded-[16px] md:rounded-[24px]"
               />
             </div>

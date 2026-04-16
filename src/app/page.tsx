@@ -68,8 +68,9 @@ export default function Home() {
               className="rounded-full object-cover shadow-[var(--shadow-soft)]"
             />
             <div className="absolute bottom-0 right-[-4px] size-5 overflow-hidden rounded-[4px] bg-white shadow-[0_0_1px_rgba(0,0,0,0.12)]">
-              <Image
-                src="/coffee-icon.png"
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/coffee-icon.gif"
                 alt=""
                 width={12}
                 height={14}
