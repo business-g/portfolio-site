@@ -177,9 +177,32 @@ const modalContent = {
 const MODAL_ENTER_MS = 220;
 const MODAL_EXIT_MS = 180;
 
-type AnalysisButtonConfig = (typeof analysisButtons)[number];
-type AnalysisButtonId = AnalysisButtonConfig["id"];
-type ModalConfig = (typeof modalContent)[AnalysisButtonId];
+type AnalysisButtonId = (typeof analysisButtons)[number]["id"];
+type AnalysisButtonConfig = {
+  id: AnalysisButtonId;
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+  className: string;
+};
+type ModalImage = {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+  className: string;
+};
+type ModalItem = {
+  label: string;
+  color: string;
+};
+type ModalConfig = {
+  title: string;
+  subtitle?: string;
+  images: readonly ModalImage[];
+  items: readonly ModalItem[];
+};
 
 type AnalysisButtonsProps = {
   buttons?: readonly AnalysisButtonConfig[];
@@ -190,8 +213,9 @@ export function AnalysisButtons({
   buttons = analysisButtons,
   contentOverrides,
 }: AnalysisButtonsProps) {
-  const [activeButton, setActiveButton] =
-    useState<(typeof analysisButtons)[number]["id"] | null>(null);
+  const [activeButton, setActiveButton] = useState<AnalysisButtonId | null>(
+    null,
+  );
   const [isMounted, setIsMounted] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
@@ -222,7 +246,7 @@ export function AnalysisButtons({
   }, [prefersReducedMotion]);
 
   const openModal = useCallback(
-    (buttonId: (typeof analysisButtons)[number]["id"]) => {
+    (buttonId: AnalysisButtonId) => {
     if (closeTimeoutRef.current) {
       clearTimeout(closeTimeoutRef.current);
       closeTimeoutRef.current = null;
@@ -238,7 +262,7 @@ export function AnalysisButtons({
     activeButton === null
       ? null
       : {
-          ...modalContent[activeButton],
+          ...(modalContent[activeButton] as ModalConfig),
           ...contentOverrides?.[activeButton],
         };
 
@@ -404,7 +428,7 @@ export function AnalysisButtons({
               </p>
             ) : null}
 
-            {currentModal.images.length === 1 ? (
+            {currentModal.images.length <= 1 ? (
               <div className="mt-[14px] overflow-hidden rounded-[4px] shadow-[0_0_1px_rgba(0,0,0,0.16)]">
                 <Image
                   src={currentModal.images[0].src}
