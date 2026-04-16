@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Bogdan, product designer",
+  title: "Bogdan — Product designer",
   description: "Personal portfolio site built from Figma in Next.js.",
 };
 
