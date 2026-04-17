@@ -65,6 +65,8 @@ export default function Home() {
               alt="Bogdan avatar"
               width={52}
               height={52}
+              sizes="52px"
+              priority
               className="rounded-full object-cover shadow-[var(--shadow-soft)]"
             />
             <div className="absolute bottom-0 right-[-4px] size-5 overflow-hidden rounded-[4px] bg-white shadow-[0_0_1px_rgba(0,0,0,0.12)]">
@@ -74,6 +76,9 @@ export default function Home() {
                 alt=""
                 width={12}
                 height={14}
+                loading="eager"
+                decoding="async"
+                fetchPriority="high"
                 className="absolute left-1/2 top-1/2 h-[14px] w-3 -translate-x-1/2 -translate-y-1/2 object-cover"
               />
             </div>

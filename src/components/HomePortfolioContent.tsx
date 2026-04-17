@@ -140,7 +140,7 @@ export function HomePortfolioContent() {
                   loop
                   muted
                   playsInline
-                  preload="metadata"
+                  preload="none"
                   aria-label={shot.alt}
                   className="block h-auto w-full"
                 >
