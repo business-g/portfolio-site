@@ -137,13 +137,19 @@ function ArrowUpRight() {
 function CaseButton({
   children,
   href,
+  target,
+  rel,
 }: {
   children: React.ReactNode;
   href: string;
+  target?: string;
+  rel?: string;
 }) {
   return (
     <a
       href={href}
+      target={target}
+      rel={rel}
       className="type-body-medium inline-flex h-12 w-full items-center justify-center gap-1 rounded-[12px] bg-[#F5F5F5] text-[var(--text-strong)] hover:bg-[#EBEBEB] focus-visible:bg-[#EBEBEB]"
     >
       <span>{children}</span>
@@ -290,7 +296,13 @@ export default function GemraPage() {
             ))}
           </div>
           <div className="mt-4">
-            <CaseButton href="#">Try live prototype</CaseButton>
+            <CaseButton
+              href="https://staking-main.lamborazer.workers.dev/staking"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Try live prototype
+            </CaseButton>
           </div>
         </section>
 
@@ -344,7 +356,13 @@ export default function GemraPage() {
         <CaseSection title="Interface" className="mt-14 md:mt-16">
           <TextStack paragraphs={interfaceParagraphs} />
           <div className="pt-1">
-            <CaseButton href="#">Try live prototype</CaseButton>
+            <CaseButton
+              href="https://staking-main.lamborazer.workers.dev/staking"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Try live prototype
+            </CaseButton>
           </div>
         </CaseSection>
 

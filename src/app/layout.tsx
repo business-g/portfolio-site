@@ -13,8 +13,31 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://portfolio-site.lamborazer.workers.dev"),
   title: "Bogdan — Product designer",
-  description: "Personal portfolio site built from Figma in Next.js.",
+  description: "End-to-end product designer",
+  openGraph: {
+    title: "Bogdan — Product designer",
+    description: "End-to-end product designer",
+    url: "https://portfolio-site.lamborazer.workers.dev",
+    siteName: "Bogdan — Product designer",
+    images: [
+      {
+        url: "/social-preview-portfolio.png",
+        width: 2400,
+        height: 1280,
+        alt: "Bogdan portfolio social preview",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Bogdan — Product designer",
+    description: "End-to-end product designer",
+    images: ["/social-preview-portfolio.png"],
+  },
 };
 
 export default function RootLayout({
