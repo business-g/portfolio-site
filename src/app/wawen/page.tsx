@@ -4,7 +4,7 @@ import Link from "next/link";
 import { AnalysisButtons } from "@/components/AnalysisButtons";
 
 export const metadata: Metadata = {
-  title: "Wawen case — Bogdan, product designer",
+  title: "Wawen case",
   description: "Case study for the Wawen router admin panel project.",
 };
 

@@ -83,7 +83,12 @@ export function HomeActionButtons() {
         <Button href="#" tone="primary">
           Telegram
         </Button>
-        <Button href="#" tone="secondary">
+        <Button
+          href="/cv-bogdan-kachatov.pdf"
+          target="_blank"
+          rel="noreferrer"
+          tone="secondary"
+        >
           View CV
         </Button>
         <Button tone="secondary" onClick={handleCopyEmail}>

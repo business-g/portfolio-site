@@ -5,7 +5,7 @@ import { AnalysisButtons } from "@/components/AnalysisButtons";
 import { BeforeAfterSlider } from "@/components/BeforeAfterSlider";
 
 export const metadata: Metadata = {
-  title: "Gemra case — Bogdan, product designer",
+  title: "Gemra case",
   description: "Case study for the Gemra staking platform project.",
 };
 
