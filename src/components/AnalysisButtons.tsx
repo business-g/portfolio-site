@@ -331,12 +331,12 @@ export function AnalysisButtons({
   return (
     <>
       <section className="mx-auto mt-6 max-w-[584px]">
-        <div className="relative h-[152px]">
+        <div className="relative pb-px md:h-[152px]">
           <div className="absolute left-[70px] right-0 top-2 h-px bg-[#EEEEEE]" />
-          <div className="type-caption absolute left-0 top-0 text-[var(--text-body)] uppercase">
+          <div className="type-caption text-[var(--text-body)] uppercase">
             Analysis
           </div>
-          <div className="absolute inset-x-0 top-8 flex gap-3">
+          <div className="mt-4 flex flex-col gap-3 md:absolute md:inset-x-0 md:top-8 md:mt-0 md:flex-row">
             {buttons.map((button) => (
               <button
                 key={button.alt}
@@ -355,7 +355,7 @@ export function AnalysisButtons({
               </button>
             ))}
           </div>
-          <div className="absolute inset-x-0 bottom-0 h-px bg-[#EEEEEE]" />
+          <div className="mt-6 h-px bg-[#EEEEEE] md:absolute md:inset-x-0 md:bottom-0 md:mt-0" />
         </div>
       </section>
 
