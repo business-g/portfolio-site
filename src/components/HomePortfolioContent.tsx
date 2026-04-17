@@ -110,7 +110,12 @@ export function HomePortfolioContent() {
   const [manualTab, setManualTab] = useState<HomeTab | null>(null);
   const queryTab =
     searchParams.get("tab") === "case-studies" ? "case-studies" : "visual";
+  const [hasVisitedCaseStudies, setHasVisitedCaseStudies] = useState(
+    queryTab === "case-studies",
+  );
   const activeTab = manualTab ?? queryTab;
+  const shouldRenderCaseStudies =
+    activeTab === "case-studies" || hasVisitedCaseStudies;
 
   useEffect(() => {
     window.dispatchEvent(new Event("portfolio-content-change"));
@@ -122,7 +127,12 @@ export function HomePortfolioContent() {
         <PortfolioSwitcher
           className="mt-12 md:mt-16"
           activeTab={activeTab}
-          onTabChange={setManualTab}
+          onTabChange={(tab) => {
+            if (tab === "case-studies") {
+              setHasVisitedCaseStudies(true);
+            }
+            setManualTab(tab);
+          }}
         />
       </div>
 
@@ -160,7 +170,9 @@ export function HomePortfolioContent() {
             </div>
           ))}
         </div>
-      ) : (
+      ) : null}
+
+      {shouldRenderCaseStudies ? (
         <div className="mx-auto mt-6 flex max-w-[1000px] flex-col gap-12 md:gap-14">
           <article className="bg-transparent">
             <Link
@@ -195,7 +207,10 @@ export function HomePortfolioContent() {
             </div>
           </article>
 
-          <article id="portfolio-shot-2" className="bg-transparent">
+          <article
+            id={activeTab === "case-studies" ? "portfolio-shot-2" : undefined}
+            className="bg-transparent"
+          >
             <Link
               href="/wawen"
               className="group block cursor-pointer overflow-hidden rounded-[16px] md:rounded-[24px]"
@@ -254,7 +269,7 @@ export function HomePortfolioContent() {
             </div>
           </article>
         </div>
-      )}
+      ) : null}
     </>
   );
 }
