@@ -342,7 +342,7 @@ export function AnalysisButtons({
                 key={button.alt}
                 type="button"
                 onClick={() => openModal(button.id)}
-                className="flex h-24 flex-1 cursor-pointer appearance-none items-center justify-center rounded-[12px] border-0 bg-[#F5F5F5] px-[34px] outline-none hover:bg-[#EBEBEB] focus-visible:bg-[#EBEBEB]"
+                className="flex h-24 min-h-24 w-full cursor-pointer appearance-none items-center justify-center rounded-[12px] border-0 bg-[#F5F5F5] px-[34px] outline-none hover:bg-[#EBEBEB] focus-visible:bg-[#EBEBEB] md:flex-1"
                 aria-label={`Open ${button.alt} analysis`}
               >
                 <Image
