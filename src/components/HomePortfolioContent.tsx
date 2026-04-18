@@ -78,13 +78,6 @@ const portfolioShots = [
     height: 777,
   },
   {
-    type: "image",
-    src: "/portfolio/updated-apr-2.png",
-    alt: "Updated APR portfolio shot 3",
-    width: 5145,
-    height: 3477,
-  },
-  {
     type: "video",
     src: "/portfolio/dynamic-island.mp4",
     alt: "Dynamic island portfolio motion shot",
@@ -100,6 +93,20 @@ const portfolioShots = [
     type: "video",
     src: "/portfolio/final-shot.mp4",
     alt: "Final portfolio motion shot",
+  },
+  {
+    type: "image",
+    src: "/portfolio/site-shot-1.png",
+    alt: "Site shot one",
+    width: 3258,
+    height: 2202,
+  },
+  {
+    type: "image",
+    src: "/portfolio/site-shot-2.png",
+    alt: "Site shot two",
+    width: 3258,
+    height: 2202,
   },
 ] as const;
 
