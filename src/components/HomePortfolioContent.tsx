@@ -173,7 +173,12 @@ export function HomePortfolioContent() {
       ) : null}
 
       {shouldRenderCaseStudies ? (
-        <div className="mx-auto mt-6 flex max-w-[1000px] flex-col gap-12 md:gap-14">
+        <div
+          aria-hidden={activeTab !== "case-studies"}
+          className={`mx-auto mt-6 max-w-[1000px] flex-col gap-12 md:gap-14 ${
+            activeTab === "case-studies" ? "flex" : "hidden"
+          }`}
+        >
           <article className="bg-transparent">
             <Link
               href="/gemra"
