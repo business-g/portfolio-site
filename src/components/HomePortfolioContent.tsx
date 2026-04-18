@@ -58,24 +58,24 @@ const portfolioShots = [
   },
   {
     type: "image",
-    src: "/portfolio/wallet-portfolio-updated.png",
-    alt: "Wallet portfolio updated shot",
-    width: 5145,
-    height: 3477,
+    src: "/portfolio/wallet-one.svg",
+    alt: "Wallet shot one",
+    width: 1152,
+    height: 777,
   },
   {
     type: "image",
-    src: "/portfolio/updated-apr.png",
-    alt: "Updated APR portfolio shot",
-    width: 5145,
-    height: 3477,
+    src: "/portfolio/wallet-two.svg",
+    alt: "Wallet shot two",
+    width: 1152,
+    height: 777,
   },
   {
     type: "image",
-    src: "/portfolio/updated-apr-1.png",
-    alt: "Updated APR portfolio shot 2",
-    width: 5145,
-    height: 3477,
+    src: "/portfolio/health-app.svg",
+    alt: "Health app portfolio shot",
+    width: 1152,
+    height: 777,
   },
   {
     type: "image",
@@ -248,7 +248,7 @@ export function HomePortfolioContent() {
                 COMING SOON
               </div>
               <Image
-                src="/kelvpn-case-study-cover-white.png"
+                src="/kelvpn-case-study-cover.svg"
                 alt="KelVPN application case study cover"
                 width={1152}
                 height={768}
