@@ -27,12 +27,14 @@ const tabs = [
 ] as const;
 
 type TabId = (typeof tabs)[number]["id"];
+type TabLabels = Partial<Record<TabId, string>>;
 
 type PortfolioSwitcherProps = {
   className?: string;
   activeTab?: TabId;
   defaultTab?: TabId;
   onTabChange?: (tab: TabId) => void;
+  labels?: TabLabels;
 };
 
 export function PortfolioSwitcher({
@@ -40,6 +42,7 @@ export function PortfolioSwitcher({
   activeTab: controlledActiveTab,
   defaultTab = "visual",
   onTabChange,
+  labels,
 }: PortfolioSwitcherProps) {
   const [internalActiveTab, setInternalActiveTab] = useState<TabId>(defaultTab);
   const prefersReducedMotion = useReducedMotion();
@@ -67,6 +70,7 @@ export function PortfolioSwitcher({
       {tabs.map(({ id, label, Icon }) => {
         const isActive = activeTab === id;
         const iconRef = id === "visual" ? chessKingRef : folderRef;
+        const tabLabel = labels?.[id] ?? label;
 
         return (
           <button
@@ -106,7 +110,7 @@ export function PortfolioSwitcher({
                 strokeWidth={1.5}
                 className={isActive ? "text-[var(--text-strong)]" : "text-[var(--text-body)]"}
               />
-              {label}
+              {tabLabel}
             </span>
           </button>
         );

@@ -10,7 +10,17 @@ const TOAST_ENTER_MS = 180;
 const TOAST_EXIT_MS = 120;
 type ToastPhase = "entering" | "visible" | "exiting";
 
-export function HomeActionButtons() {
+type HomeActionButtonsProps = {
+  labels?: {
+    telegram?: string;
+    viewCv?: string;
+    copyEmail?: string;
+  };
+};
+
+export function HomeActionButtons({
+  labels,
+}: HomeActionButtonsProps = {}) {
   const [isMounted, setIsMounted] = useState(false);
   const [phase, setPhase] = useState<ToastPhase>("entering");
   const hideTimeoutRef = useRef<number | null>(null);
@@ -81,12 +91,12 @@ export function HomeActionButtons() {
     <>
       <div className="mt-6 flex flex-wrap gap-3">
         <Button
-          href="https://t.me/kctv_b"
+          href="https://t.me/bogdanktv"
           target="_blank"
           rel="noreferrer"
           tone="primary"
         >
-          Telegram
+          {labels?.telegram ?? "Telegram"}
         </Button>
         <Button
           href="/cv-bogdan-kachatov.pdf"
@@ -94,10 +104,10 @@ export function HomeActionButtons() {
           rel="noreferrer"
           tone="secondary"
         >
-          View CV
+          {labels?.viewCv ?? "View CV"}
         </Button>
         <Button tone="secondary" onClick={handleCopyEmail}>
-          Copy Email
+          {labels?.copyEmail ?? "Copy Email"}
         </Button>
       </div>
 

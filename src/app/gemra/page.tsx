@@ -369,7 +369,7 @@ export default function GemraPage() {
         <div className="mx-auto mt-6 max-w-[1000px]">
           <VisualFrame>
             <Image
-              src="/gemra/interface-1.svg"
+              src="/gemra/interface-1-v2.svg"
               alt="Gemra staking interface"
               width={1000}
               height={675}
@@ -380,7 +380,7 @@ export default function GemraPage() {
             <div>
               <VisualFrame>
                 <Image
-                  src="/gemra/lock-period-tooltip.svg"
+                  src="/gemra/lock-period-tooltip-v2.svg"
                   alt="Lock period tooltip"
                   width={494}
                   height={458}
@@ -394,7 +394,7 @@ export default function GemraPage() {
             <div>
               <VisualFrame>
                 <Image
-                  src="/gemra/auto-compound-tooltip.svg"
+                  src="/gemra/auto-compound-tooltip-v2.svg"
                   alt="Auto-compound tooltip"
                   width={494}
                   height={458}
@@ -417,7 +417,7 @@ export default function GemraPage() {
         <div className="mx-auto mt-12 max-w-[1000px] space-y-3">
           <VisualFrame>
             <Image
-              src="/gemra/interface-02.svg"
+              src="/gemra/interface-02-v2.svg"
               alt="Interface screen 2"
               width={1000}
               height={675}
@@ -426,7 +426,7 @@ export default function GemraPage() {
           </VisualFrame>
           <VisualFrame>
             <Image
-              src="/gemra/interface-03.svg"
+              src="/gemra/interface-03-v2.svg"
               alt="Interface screen 3"
               width={1000}
               height={675}
@@ -435,7 +435,7 @@ export default function GemraPage() {
           </VisualFrame>
           <VisualFrame>
             <Image
-              src="/gemra/interface-04.svg"
+              src="/gemra/interface-04-v2.svg"
               alt="Interface screen 4"
               width={1000}
               height={675}
@@ -451,7 +451,7 @@ export default function GemraPage() {
         <div className="mx-auto mt-6 max-w-[1000px] space-y-3">
           <VisualFrame>
             <Image
-              src="/gemra/unstake-interface.svg"
+              src="/gemra/unstake-interface-v2.svg"
               alt="Unstake interface"
               width={1000}
               height={675}
@@ -460,7 +460,7 @@ export default function GemraPage() {
           </VisualFrame>
           <VisualFrame>
             <Image
-              src="/gemra/unstake-blank.png"
+              src="/gemra/unstake-blank-v4.svg"
               alt="Unstake empty state"
               width={3000}
               height={2025}
@@ -471,7 +471,7 @@ export default function GemraPage() {
             <div>
               <VisualFrame>
                 <Image
-                  src="/gemra/unstake-modal-01.svg"
+                  src="/gemra/unstake-modal-01-v4.svg"
                   alt="Pending rewards included in unstake"
                   width={494}
                   height={458}
@@ -485,7 +485,7 @@ export default function GemraPage() {
             <div>
               <VisualFrame>
                 <Image
-                  src="/gemra/unstake-modal-02.svg"
+                  src="/gemra/unstake-modal-02-v4.svg"
                   alt="No pending rewards to claim"
                   width={494}
                   height={458}
@@ -512,7 +512,7 @@ export default function GemraPage() {
         <div className="mx-auto mt-14 max-w-[1000px]">
           <VisualFrame>
             <Image
-              src="/gemra/portfolio-img.svg"
+              src="/gemra/portfolio-img-v2.png"
               alt="Portfolio"
               width={1000}
               height={675}
@@ -525,7 +525,7 @@ export default function GemraPage() {
 
           <VisualFrame className="mt-6">
             <Image
-              src="/gemra/harvesting-img.svg"
+              src="/gemra/harvesting-img-v2.png"
               alt="Harvest all available rewards"
               width={1000}
               height={637}
@@ -538,7 +538,7 @@ export default function GemraPage() {
 
           <VisualFrame className="mt-6">
             <Image
-              src="/gemra/wallet-img.svg"
+              src="/gemra/wallet-img-v2.png"
               alt="Wallet overview"
               width={1000}
               height={637}
@@ -559,8 +559,8 @@ export default function GemraPage() {
 
         <BeforeAfterSlider
           className="mt-6"
-          beforeSrc="/gemra/old-interface.svg"
-          afterSrc="/gemra/updated-interface.svg"
+          beforeSrc="/gemra/before-1-v2.svg"
+          afterSrc="/gemra/interface-1-v2.svg"
           beforeAlt="Old interface"
           afterAlt="Updated interface"
         />

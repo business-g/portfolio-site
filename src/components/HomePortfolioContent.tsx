@@ -112,7 +112,15 @@ const portfolioShots = [
 
 type HomeTab = "visual" | "case-studies";
 
-export function HomePortfolioContent() {
+type HomePortfolioContentProps = {
+  tabLabels?: Partial<Record<HomeTab, string>>;
+  caseStudiesNote?: string;
+};
+
+export function HomePortfolioContent({
+  tabLabels,
+  caseStudiesNote,
+}: HomePortfolioContentProps = {}) {
   const searchParams = useSearchParams();
   const [manualTab, setManualTab] = useState<HomeTab | null>(null);
   const queryTab =
@@ -131,16 +139,23 @@ export function HomePortfolioContent() {
   return (
     <>
       <div className="mx-auto w-full md:max-w-[584px]">
-        <PortfolioSwitcher
-          className="mt-12 md:mt-16"
-          activeTab={activeTab}
-          onTabChange={(tab) => {
-            if (tab === "case-studies") {
-              setHasVisitedCaseStudies(true);
-            }
-            setManualTab(tab);
-          }}
-        />
+        <div className="mt-12 md:mt-16 md:flex md:items-center md:gap-6">
+          <PortfolioSwitcher
+            activeTab={activeTab}
+            labels={tabLabels}
+            onTabChange={(tab) => {
+              if (tab === "case-studies") {
+                setHasVisitedCaseStudies(true);
+              }
+              setManualTab(tab);
+            }}
+          />
+          {activeTab === "case-studies" && caseStudiesNote ? (
+            <p className="type-caption mt-3 hidden whitespace-nowrap text-[var(--text-body)] md:mt-0 md:block">
+              {caseStudiesNote}
+            </p>
+          ) : null}
+        </div>
       </div>
 
       {activeTab === "visual" ? (
@@ -192,7 +207,7 @@ export function HomePortfolioContent() {
               className="group block cursor-pointer overflow-hidden rounded-[16px] md:rounded-[24px]"
             >
               <Image
-                src="/gemra-case-study-cover.svg"
+                src="/gemra-case-study-cover-v2.svg"
                 alt="Gemra staking platform case study cover"
                 width={1000}
                 height={675}
@@ -268,15 +283,12 @@ export function HomePortfolioContent() {
                 KelVPN — VPN application
               </h2>
               <p className="type-body-large mt-3 text-[var(--text-body)]">
-                Designed the complete interface and drove product iterations.
-                Created a trial-to-purchase flow that{" "}
-                <span className="text-[#1C1C22]">
-                  increased free-to-paid conversion by 18%.
-                </span>{" "}
-                Simplified the hybrid VPN feature through 3 iterations,{" "}
-                <span className="text-[#1C1C22]">
-                  growing adoption by 27%.
-                </span>
+                Designed the complete product interface and worked on ongoing
+                product iterations. Created the trial-period flow and designed
+                NoCDB order flows for renting VPS servers with flexible rental
+                duration. Also simplified the Hybrid VPN experience through
+                multiple UX iterations to make advanced networking
+                functionality more accessible for users.
               </p>
             </div>
           </article>

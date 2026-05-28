@@ -31,27 +31,7 @@ const stackItems = [
   },
 ] as const;
 
-function InlineArrowRight() {
-  return (
-    <svg
-      aria-hidden="true"
-      viewBox="0 0 10 8"
-      className="mx-0.5 inline-block h-2 w-2.5 align-[0.02em]"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M1 4H8M8 4L5.5 1.5M8 4L5.5 6.5"
-        stroke="currentColor"
-        strokeWidth="1.25"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
-export default function Home() {
+export default function RussianHome() {
   return (
     <main
       id="top"
@@ -86,24 +66,25 @@ export default function Home() {
 
           <div className="mt-4 max-w-[520px] space-y-3">
             <p className="type-body-large text-[var(--text-strong)]">
-              Hey, I’m Bogdan, a product designer.
+              Привет, я Богдан — продуктовый дизайнер с 6+ годами опыта.
             </p>
             <p className="type-body-large text-[var(--text-body)]">
-              I’ve worked on products from 0
-              <InlineArrowRight />
-              1 and kept improving them after launch.
+              Проектировал сложные B2B и B2C продукты: криптокошелек,
+              стейкинг-платформы, VPN-приложения, eCommerce, дашборды,
+              роутер-админку и внутренние инструменты для команд.
             </p>
             <p className="type-body-large text-[var(--text-body)]">
-              Most of my experience is in Web3 and products with complex logic:
-              dashboards, crypto wallet, VPN apps, and admin panels.
-            </p>
-            <p className="type-body-large text-[var(--text-body)]">
-              I treat design as a question of timing and payoff: what needs to be
-              solid now, what can ship lean, and what’s still too early to overbuild.
+              Работаю от ресёрча до результата: провожу интервью, тестирую
+              гипотезы, смотрю на метрики и итерирую.
             </p>
           </div>
 
-          <HomeActionButtons />
+          <HomeActionButtons
+            labels={{
+              viewCv: "Смотреть CV",
+              copyEmail: "Скопировать Email",
+            }}
+          />
 
           <div className="relative mt-12 h-[105px] text-[var(--text-body)] md:mt-16 md:h-[79px]">
             <span className="type-caption absolute left-0 top-0 uppercase">
@@ -133,9 +114,14 @@ export default function Home() {
           </div>
         </div>
         <Suspense fallback={null}>
-          <HomePortfolioContent />
+          <HomePortfolioContent
+            tabLabels={{
+              visual: "Визуал",
+              "case-studies": "Кейсы",
+            }}
+            caseStudiesNote="В процессе перевода"
+          />
         </Suspense>
-
       </section>
 
       <UpButton />
