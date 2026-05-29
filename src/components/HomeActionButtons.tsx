@@ -99,7 +99,7 @@ export function HomeActionButtons({
           {labels?.telegram ?? "Telegram"}
         </Button>
         <Button
-          href="/cv-bogdan-kachatov.pdf"
+          href="/cv-bogdan-kv.pdf"
           target="_blank"
           rel="noreferrer"
           tone="secondary"
