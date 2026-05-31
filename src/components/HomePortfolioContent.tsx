@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
+import type { ReactNode } from "react";
 import { useEffect, useState } from "react";
 
 import { PortfolioSwitcher } from "@/components/PortfolioSwitcher";
@@ -10,7 +11,7 @@ import { PortfolioSwitcher } from "@/components/PortfolioSwitcher";
 const portfolioShots = [
   {
     type: "image",
-    src: "/portfolio/router-admin-panel.svg",
+    src: "/portfolio/visual-01.svg",
     alt: "Router admin panel portfolio shot",
     width: 1622,
     height: 1080,
@@ -22,72 +23,68 @@ const portfolioShots = [
   },
   {
     type: "image",
-    src: "/portfolio/saas-dashboard.svg",
+    src: "/portfolio/visual-02.svg",
     alt: "SaaS dashboard portfolio shot",
     width: 1120,
     height: 746,
   },
   {
     type: "image",
-    src: "/portfolio/dex.svg",
+    src: "/portfolio/visual-03.svg",
     alt: "DEX portfolio shot",
     width: 1648,
     height: 1113,
   },
   {
     type: "video",
-    src: "/portfolio/send-tokens-flow.mp4",
+    src: "/portfolio/claim-reward-4-v2.mp4",
     alt: "Send tokens flow portfolio motion shot",
   },
   {
     type: "image",
-    src: "/portfolio/settings.avif",
+    src: "/portfolio/visual-08.svg",
+    alt: "Portfolio visual shot eight",
+    width: 2048,
+    height: 1384,
+  },
+  {
+    type: "image",
+    src: "/portfolio/visual-05.svg",
     alt: "Settings portfolio shot",
     width: 2048,
     height: 1384,
   },
   {
+    type: "image",
+    src: "/portfolio/visual-06.svg",
+    alt: "Portfolio visual shot six",
+    width: 2048,
+    height: 1384,
+  },
+  {
+    type: "image",
+    src: "/portfolio/visual-04.svg",
+    alt: "Portfolio visual shot four",
+    width: 2048,
+    height: 1384,
+  },
+  {
+    type: "image",
+    src: "/portfolio/visual-07.svg",
+    alt: "Portfolio visual shot seven",
+    width: 2048,
+    height: 1384,
+  },
+  {
     type: "video",
-    src: "/portfolio/dashboard-anim.mp4",
-    alt: "Dashboard animation portfolio motion shot",
-  },
-  {
-    type: "video",
-    src: "/portfolio/messenger-flow.mp4",
-    alt: "Messenger flow portfolio motion shot",
-  },
-  {
-    type: "image",
-    src: "/portfolio/wallet-one.svg",
-    alt: "Wallet shot one",
-    width: 1152,
-    height: 777,
-  },
-  {
-    type: "image",
-    src: "/portfolio/wallet-two.svg",
-    alt: "Wallet shot two",
-    width: 1152,
-    height: 777,
-  },
-  {
-    type: "image",
-    src: "/portfolio/health-app.svg",
-    alt: "Health app portfolio shot",
-    width: 1152,
-    height: 777,
+    src: "/portfolio/send-message-updated-v2.mp4",
+    alt: "Send message portfolio motion shot",
+    playbackRate: 1.25,
   },
   {
     type: "video",
     src: "/portfolio/dynamic-island.mp4",
     alt: "Dynamic island portfolio motion shot",
-  },
-  {
-    type: "image",
-    src: "/portfolio/connect-wallet.webp",
-    alt: "Connect wallet portfolio shot",
-    width: 2048,
-    height: 1384,
   },
   {
     type: "video",
@@ -96,17 +93,24 @@ const portfolioShots = [
   },
   {
     type: "image",
-    src: "/portfolio/site-shot-1.png",
-    alt: "Site shot one",
-    width: 3258,
-    height: 2202,
+    src: "/portfolio/features-visual.svg",
+    alt: "Features visual portfolio shot",
+    width: 2048,
+    height: 1384,
   },
   {
     type: "image",
-    src: "/portfolio/site-shot-2.png",
-    alt: "Site shot two",
-    width: 3258,
-    height: 2202,
+    src: "/portfolio/hero-visual.png",
+    alt: "Hero visual portfolio shot",
+    width: 2048,
+    height: 1384,
+  },
+  {
+    type: "image",
+    src: "/portfolio/visual-09.svg",
+    alt: "Portfolio visual shot nine",
+    width: 2048,
+    height: 1384,
   },
 ] as const;
 
@@ -115,11 +119,50 @@ type HomeTab = "visual" | "case-studies";
 type HomePortfolioContentProps = {
   tabLabels?: Partial<Record<HomeTab, string>>;
   caseStudiesNote?: string;
+  gemraCaseStudyTitle?: string;
+  gemraCaseStudyDescription?: ReactNode;
+  wawenCaseStudyTitle?: string;
+  wawenCaseStudyDescription?: ReactNode;
+  kelvpnCaseStudyTitle?: string;
+  kelvpnCaseStudyDescription?: ReactNode;
 };
 
 export function HomePortfolioContent({
   tabLabels,
   caseStudiesNote,
+  gemraCaseStudyTitle = "Gemra — staking platform",
+  gemraCaseStudyDescription = (
+    <>
+      Designed a fixed-term staking platform from 0 to launch, covering user
+      research, product decisions, and interface design.{" "}
+      <span className="text-[#1C1C22]">
+        Attracted $500K+ in staked tokens.
+      </span>{" "}
+      Post-launch iteration{" "}
+      <span className="text-[#1C1C22]">
+        increased auto-compound adoption by 44%.
+      </span>
+    </>
+  ),
+  wawenCaseStudyTitle = "Wawen — router admin panel",
+  wawenCaseStudyDescription = (
+    <>
+      Designed a router admin panel from scratch for both casual users and
+      network administrators. Reorganized a&nbsp;complex networking product
+      into clearer flows, with Basic and Advanced modes for different levels of
+      control.
+    </>
+  ),
+  kelvpnCaseStudyTitle = "KelVPN — VPN application",
+  kelvpnCaseStudyDescription = (
+    <>
+      Designed the complete product interface and worked on ongoing product
+      iterations. Created the trial-period flow and designed NoCDB order flows
+      for renting VPS servers with flexible rental duration. Also simplified
+      the Hybrid VPN experience through multiple UX iterations to make advanced
+      networking functionality more accessible for users.
+    </>
+  ),
 }: HomePortfolioContentProps = {}) {
   const searchParams = useSearchParams();
   const [manualTab, setManualTab] = useState<HomeTab | null>(null);
@@ -159,25 +202,32 @@ export function HomePortfolioContent({
       </div>
 
       {activeTab === "visual" ? (
-        <div className="mx-auto mt-6 flex max-w-[1000px] flex-col gap-3">
+        <div className="relative left-1/2 mt-6 flex w-screen max-w-none -translate-x-1/2 flex-col gap-2 px-0">
           {portfolioShots.map((shot, index) => (
             <div
               key={shot.src}
               id={index === 1 ? "portfolio-shot-2" : undefined}
-              className="overflow-hidden rounded-[16px] bg-[var(--surface-muted)] md:rounded-[24px]"
+              className="overflow-hidden bg-[var(--surface-muted)]"
             >
               {shot.type === "video" ? (
-                <video
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  preload="none"
-                  aria-label={shot.alt}
-                  className="block h-auto w-full"
-                >
-                  <source src={shot.src} type="video/mp4" />
-                </video>
+                <div className="flex aspect-[1512/820] w-full items-center justify-center bg-[#F5F5F5]">
+                  <video
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    preload="none"
+                    aria-label={shot.alt}
+                    onLoadedMetadata={(event) => {
+                      if ("playbackRate" in shot && shot.playbackRate) {
+                        event.currentTarget.playbackRate = shot.playbackRate;
+                      }
+                    }}
+                    className="block h-full w-full object-contain"
+                  >
+                    <source src={shot.src} type="video/mp4" />
+                  </video>
+                </div>
               ) : (
                 <Image
                   src={shot.src}
@@ -185,7 +235,7 @@ export function HomePortfolioContent({
                   width={shot.width}
                   height={shot.height}
                   unoptimized={shot.src.endsWith(".svg")}
-                  sizes="(max-width: 1024px) 100vw, 1000px"
+                  sizes="(max-width: 767px) calc(100vw - 2rem), (max-width: 1023px) calc(100vw - 3rem), 1416px"
                   className="block h-auto w-full"
                 />
               )}
@@ -217,19 +267,10 @@ export function HomePortfolioContent({
             </Link>
             <div className="mx-auto mt-4 max-w-[584px]">
               <h2 className="font-heading text-[17px] leading-6 font-medium text-[#1C1C22]">
-                Gemra — staking platform
+                {gemraCaseStudyTitle}
               </h2>
               <p className="type-body-large mt-3 text-[var(--text-body)]">
-                Designed a fixed-term staking platform from 0 to launch,
-                covering user research, product decisions, and interface
-                design.{" "}
-                <span className="text-[#1C1C22]">
-                  Attracted $500K+ in staked tokens.
-                </span>{" "}
-                Post-launch iteration{" "}
-                <span className="text-[#1C1C22]">
-                  increased auto-compound adoption by 44%.
-                </span>
+                {gemraCaseStudyDescription}
               </p>
             </div>
           </article>
@@ -253,13 +294,10 @@ export function HomePortfolioContent({
             </Link>
             <div className="mx-auto mt-4 max-w-[584px]">
               <h2 className="font-heading text-[17px] leading-6 font-medium text-[#1C1C22]">
-                Wawen — router admin panel
+                {wawenCaseStudyTitle}
               </h2>
               <p className="type-body-large mt-3 text-[var(--text-body)]">
-                Designed a router admin panel from scratch for both casual
-                users and network administrators. Reorganized a&nbsp;complex
-                networking product into clearer flows, with Basic and Advanced
-                modes for different levels of control.
+                {wawenCaseStudyDescription}
               </p>
             </div>
           </article>
@@ -270,7 +308,7 @@ export function HomePortfolioContent({
                 COMING SOON
               </div>
               <Image
-                src="/kelvpn-case-study-cover.svg"
+                src="/kelvpn-case-study-cover-v2.svg"
                 alt="KelVPN application case study cover"
                 width={1152}
                 height={768}
@@ -280,15 +318,10 @@ export function HomePortfolioContent({
             </div>
             <div className="mx-auto mt-4 max-w-[584px]">
               <h2 className="font-heading text-[17px] leading-6 font-medium text-[#1C1C22]">
-                KelVPN — VPN application
+                {kelvpnCaseStudyTitle}
               </h2>
               <p className="type-body-large mt-3 text-[var(--text-body)]">
-                Designed the complete product interface and worked on ongoing
-                product iterations. Created the trial-period flow and designed
-                NoCDB order flows for renting VPS servers with flexible rental
-                duration. Also simplified the Hybrid VPN experience through
-                multiple UX iterations to make advanced networking
-                functionality more accessible for users.
+                {kelvpnCaseStudyDescription}
               </p>
             </div>
           </article>

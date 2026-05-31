@@ -133,13 +133,6 @@ export function UpButton() {
       }}
     >
       <Image
-        src="/up-button-bg.svg"
-        alt=""
-        width={126}
-        height={77}
-        className="absolute inset-0 h-full w-full"
-      />
-      <Image
         src="/up-button-arrow.svg"
         alt=""
         width={24}

@@ -69,13 +69,10 @@ export default function RussianHome() {
               Привет, я Богдан — продуктовый дизайнер с 6+ годами опыта.
             </p>
             <p className="type-body-large text-[var(--text-body)]">
-              Проектировал сложные B2B и B2C продукты: криптокошелек,
-              стейкинг-платформы, VPN-приложения, eCommerce, дашборды,
-              роутер-админку и внутренние инструменты для команд.
-            </p>
-            <p className="type-body-large text-[var(--text-body)]">
-              Работаю от ресёрча до результата: провожу интервью, тестирую
-              гипотезы, смотрю на метрики и итерирую.
+              Более 10 запущенных B2B- и B2C-продуктов. В числе проектов
+              криптокошелёк, стейкинг-платформы, VPN-приложение,
+              блокчейн-эксплорер, маркетплейс, роутер-админка, корпоративный
+              мессенджер и платформа мотивации сотрудников.
             </p>
           </div>
 
@@ -87,10 +84,10 @@ export default function RussianHome() {
           />
 
           <div className="relative mt-12 h-[105px] text-[var(--text-body)] md:mt-16 md:h-[79px]">
-            <span className="type-caption absolute left-0 top-0 uppercase">
-              Stack
-            </span>
-            <span className="absolute left-12 top-2 h-px w-[calc(100%-3rem)] bg-[var(--border-soft)]" />
+            <div className="absolute left-0 right-0 top-0 flex items-center gap-3">
+              <span className="type-caption uppercase">Стек</span>
+              <span className="h-px flex-1 bg-[var(--border-soft)]" />
+            </div>
             <div className="absolute left-0 top-7 flex w-[calc(100%-4px)] flex-wrap items-center gap-x-5 gap-y-3 md:top-8 md:w-auto md:flex-nowrap">
               {stackItems.map((item) => (
                 <div
@@ -120,6 +117,40 @@ export default function RussianHome() {
               "case-studies": "Кейсы",
             }}
             caseStudiesNote="В процессе перевода"
+            gemraCaseStudyTitle="Gemra — стейкинг платформа"
+            gemraCaseStudyDescription={
+              <>
+                Спроектировал стейкинг платформу с локапом с нуля до запуска:
+                ресёрч, продуктовые решения, дизайн интерфейса.{" "}
+                <span className="text-[#1C1C22]">
+                  Привлёк $500K+ в застейканных токенах.
+                </span>{" "}
+                Итерация после запуска{" "}
+                <span className="text-[#1C1C22]">
+                  увеличила использование авто-реинвестирования на 44%.
+                </span>
+              </>
+            }
+            wawenCaseStudyTitle="Wawen — админ-панель роутера"
+            wawenCaseStudyDescription={
+              <>
+                Спроектировал админ-панель роутера с нуля: пользовательские
+                сценарии, интерфейс, информационную архитектуру. Разделил
+                интерфейс на Basic и&nbsp;Advanced режимы для пользователей с разным
+                уровнем подготовки. Отдельно проработал раздел Hybrid VPN и
+                связанные сетевые настройки.
+              </>
+            }
+            kelvpnCaseStudyTitle="KelVPN — VPN-приложение"
+            kelvpnCaseStudyDescription={
+              <>
+                Спроектировал полный интерфейс приложения и вёл продуктовые
+                итерации. Разработал флоу пробного периода и сценарии аренды
+                VPS-серверов с&nbsp;гибкими сроками. Упростил Hybrid VPN через
+                несколько UX-итераций, сделав сложную функцию доступной для
+                обычных пользователей.
+              </>
+            }
           />
         </Suspense>
       </section>
