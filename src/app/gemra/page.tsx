@@ -263,13 +263,21 @@ function ImpactSummary() {
   );
 }
 
-export default function GemraPage() {
+export default async function GemraPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ from?: string }>;
+}) {
+  const params = await searchParams;
+  const backHref =
+    params.from === "ru" ? "/ru?tab=case-studies" : "/?tab=case-studies";
+
   return (
     <main className="min-h-screen bg-[#fdfdfc] px-4 pb-8 pt-6 md:px-6 md:pb-24 md:pt-12 lg:px-12">
       <div className="relative mx-auto max-w-[1512px]">
         <div className="pointer-events-none absolute inset-y-0 left-0 z-20 w-14">
           <div className="sticky top-6 pointer-events-auto w-fit">
-            <CaseBackButton />
+            <CaseBackButton href={backHref} />
           </div>
         </div>
         <div className="mx-auto max-w-[1000px]">

@@ -1,17 +1,7 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname, useSearchParams } from "next/navigation";
 
-export function CaseBackButton() {
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-  const from = searchParams.get("from");
-  const href = pathname.startsWith("/ru") || from === "ru"
-    ? "/ru?tab=case-studies"
-    : "/?tab=case-studies";
-
+export function CaseBackButton({ href }: { href: string }) {
   return (
     <Link
       href={href}
