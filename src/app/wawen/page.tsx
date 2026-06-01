@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { AnalysisButtons } from "@/components/AnalysisButtons";
+import { CaseBackButton } from "@/components/CaseBackButton";
 
 export const metadata: Metadata = {
   title: "Wawen case",
@@ -191,7 +192,12 @@ function HeroCover() {
 export default function WawanPage() {
   return (
     <main className="min-h-screen bg-[#fdfdfc] px-4 pb-8 pt-6 md:px-6 md:pb-24 md:pt-12 lg:px-12">
-      <div className="mx-auto max-w-[1512px]">
+      <div className="relative mx-auto max-w-[1512px]">
+        <div className="pointer-events-none absolute inset-y-0 left-0 z-20 w-14">
+          <div className="sticky top-6 pointer-events-auto w-fit">
+            <CaseBackButton />
+          </div>
+        </div>
         <div className="mx-auto max-w-[1000px]">
           <HeroCover />
         </div>

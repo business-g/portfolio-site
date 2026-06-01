@@ -119,8 +119,10 @@ type HomeTab = "visual" | "case-studies";
 type HomePortfolioContentProps = {
   tabLabels?: Partial<Record<HomeTab, string>>;
   caseStudiesNote?: string;
+  gemraCaseStudyHref?: string;
   gemraCaseStudyTitle?: string;
   gemraCaseStudyDescription?: ReactNode;
+  wawenCaseStudyHref?: string;
   wawenCaseStudyTitle?: string;
   wawenCaseStudyDescription?: ReactNode;
   kelvpnCaseStudyTitle?: string;
@@ -130,6 +132,7 @@ type HomePortfolioContentProps = {
 export function HomePortfolioContent({
   tabLabels,
   caseStudiesNote,
+  gemraCaseStudyHref = "/gemra",
   gemraCaseStudyTitle = "Gemra — staking platform",
   gemraCaseStudyDescription = (
     <>
@@ -144,6 +147,7 @@ export function HomePortfolioContent({
       </span>
     </>
   ),
+  wawenCaseStudyHref = "/wawen",
   wawenCaseStudyTitle = "Wawen — router admin panel",
   wawenCaseStudyDescription = (
     <>
@@ -253,19 +257,28 @@ export function HomePortfolioContent({
         >
           <article className="bg-transparent">
             <Link
-              href="/gemra"
-              className="group block cursor-pointer overflow-hidden rounded-[16px] md:rounded-[24px]"
+              href={gemraCaseStudyHref}
+              className="group block cursor-pointer overflow-hidden rounded-[16px] md:rounded-[32px]"
             >
-              <Image
-                src="/gemra-case-study-cover-v2.svg"
-                alt="Gemra staking platform case study cover"
-                width={1000}
-                height={675}
-                sizes="(max-width: 1024px) 100vw, 1000px"
-                className="block h-auto w-full rounded-[16px] transition-transform duration-[240ms] ease-[ease] will-change-transform group-hover:scale-[1.01] motion-reduce:transition-none motion-reduce:group-hover:scale-100 md:rounded-[24px]"
-              />
+              <div className="flex aspect-[1000/650] w-full max-w-[1000px] items-center justify-center rounded-[16px] bg-[#F5F5F5] md:rounded-[32px]">
+                <video
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  preload="none"
+                  aria-label="Gemra staking platform case study preview"
+                  className="block max-h-[546px] max-w-[894px] rounded-[20px] object-contain transition-transform duration-[240ms] ease-[ease] will-change-transform group-hover:scale-[1.01] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+                >
+                  <source src="/gemra-preview-cover-v3.mp4" type="video/mp4" />
+                  <source
+                    src="/gemra-preview-cover-v3.mov"
+                    type="video/quicktime"
+                  />
+                </video>
+              </div>
             </Link>
-            <div className="mx-auto mt-4 max-w-[584px]">
+            <div className="mx-auto mt-4 max-w-[520px]">
               <h2 className="font-heading text-[17px] leading-6 font-medium text-[#1C1C22]">
                 {gemraCaseStudyTitle}
               </h2>
@@ -280,19 +293,19 @@ export function HomePortfolioContent({
             className="bg-transparent"
           >
             <Link
-              href="/wawen"
-              className="group block cursor-pointer overflow-hidden rounded-[16px] md:rounded-[24px]"
+              href={wawenCaseStudyHref}
+              className="group block cursor-pointer overflow-hidden rounded-[16px] md:rounded-[32px]"
             >
               <Image
-                src="/portfolio/router-admin-panel.svg"
+                src="/portfolio/wawen-cover-v2.svg"
                 alt="Wawen router admin panel case study cover"
                 width={1622}
                 height={1080}
                 sizes="(max-width: 1024px) 100vw, 1000px"
-                className="block h-auto w-full rounded-[16px] transition-transform duration-[240ms] ease-[ease] will-change-transform group-hover:scale-[1.01] motion-reduce:transition-none motion-reduce:group-hover:scale-100 md:rounded-[24px]"
+                className="block h-auto w-full rounded-[16px] transition-transform duration-[240ms] ease-[ease] will-change-transform group-hover:scale-[1.01] motion-reduce:transition-none motion-reduce:group-hover:scale-100 md:rounded-[32px]"
               />
             </Link>
-            <div className="mx-auto mt-4 max-w-[584px]">
+            <div className="mx-auto mt-4 max-w-[520px]">
               <h2 className="font-heading text-[17px] leading-6 font-medium text-[#1C1C22]">
                 {wawenCaseStudyTitle}
               </h2>
@@ -303,20 +316,20 @@ export function HomePortfolioContent({
           </article>
 
           <article className="bg-transparent">
-            <div className="relative overflow-hidden rounded-[16px] md:rounded-[24px]">
+            <div className="relative overflow-hidden rounded-[16px] md:rounded-[32px]">
               <div className="absolute right-4 top-4 z-10 flex h-6 items-center rounded-full bg-[#FDFDFC] px-[10px] font-mono text-[12px] leading-4 font-medium text-[#5F5D68] shadow-[0_0_1px_rgba(0,0,0,0.08)]">
                 COMING SOON
               </div>
               <Image
-                src="/kelvpn-case-study-cover-v2.svg"
+                src="/kelvpn-case-study-cover-v3.svg"
                 alt="KelVPN application case study cover"
                 width={1152}
                 height={768}
                 sizes="(max-width: 1024px) 100vw, 1000px"
-                className="block h-auto w-full rounded-[16px] md:rounded-[24px]"
+                className="block h-auto w-full rounded-[16px] md:rounded-[32px]"
               />
             </div>
-            <div className="mx-auto mt-4 max-w-[584px]">
+            <div className="mx-auto mt-4 max-w-[520px]">
               <h2 className="font-heading text-[17px] leading-6 font-medium text-[#1C1C22]">
                 {kelvpnCaseStudyTitle}
               </h2>
