@@ -136,12 +136,12 @@ export function HomePortfolioContent({
   gemraCaseStudyTitle = "Gemra — staking platform",
   gemraCaseStudyDescription = (
     <>
-      Designed a fixed-term staking platform from 0 to launch, covering user
-      research, product decisions, and interface design.{" "}
+      Designed a fixed-lock staking platform end-to-end: research, product
+      decisions and interface.{" "}
       <span className="text-[#1C1C22]">
         Attracted $500K+ in staked tokens.
       </span>{" "}
-      Post-launch iteration{" "}
+      A post-launch iteration{" "}
       <span className="text-[#1C1C22]">
         increased auto-compound adoption by 44%.
       </span>
@@ -151,20 +151,17 @@ export function HomePortfolioContent({
   wawenCaseStudyTitle = "Wawen — router admin panel",
   wawenCaseStudyDescription = (
     <>
-      Designed a router admin panel from scratch for both casual users and
-      network administrators. Reorganized a&nbsp;complex networking product
-      into clearer flows, with Basic and Advanced modes for different levels of
-      control.
+      Designed a router admin panel from scratch. Worked through information
+      architecture, network management flows, and VPN settings — making the
+      interface approachable for beginners without limiting advanced users.
     </>
   ),
   kelvpnCaseStudyTitle = "KelVPN — VPN application",
   kelvpnCaseStudyDescription = (
     <>
-      Designed the complete product interface and worked on ongoing product
-      iterations. Created the trial-period flow and designed NoCDB order flows
-      for renting VPS servers with flexible rental duration. Also simplified
-      the Hybrid VPN experience through multiple UX iterations to make advanced
-      networking functionality more accessible for users.
+      Designed a VPN app supporting two activation methods: key-based
+      connection and VPS rental. Worked through server rental flows with crypto
+      payments, order management, and Hybrid VPN configuration.
     </>
   ),
 }: HomePortfolioContentProps = {}) {

@@ -151,7 +151,7 @@ function CaseButton({
       href={href}
       target={target}
       rel={rel}
-      className="type-body-medium inline-flex h-12 w-full items-center justify-center gap-1 rounded-[12px] bg-[#F5F5F5] text-[var(--text-strong)] hover:bg-[#EBEBEB] focus-visible:bg-[#EBEBEB]"
+      className="type-body-medium inline-flex h-12 w-full items-center justify-center gap-1 rounded-[12px] bg-[#9E7DFF] text-[#FAFAFA] hover:bg-[#B399FF] focus-visible:bg-[#B399FF]"
     >
       <span>{children}</span>
       <ArrowUpRight />
