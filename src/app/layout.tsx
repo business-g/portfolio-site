@@ -46,11 +46,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${geist.variable} ${geistMono.variable} h-full`}
-    >
-      <body className="min-h-full flex flex-col">
+    <html lang="en" className={`${geist.variable} ${geistMono.variable}`}>
+      <body
+        style={{
+          margin: 0,
+          minHeight: "100vh",
+          display: "flex",
+          flexDirection: "column",
+          fontFamily:
+            "var(--font-geist), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+          background: "#ffffff",
+        }}
+      >
         {children}
       </body>
     </html>

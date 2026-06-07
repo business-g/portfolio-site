@@ -7,8 +7,14 @@ import type { ReactNode } from "react";
 import { useEffect, useState } from "react";
 
 import { PortfolioSwitcher } from "@/components/PortfolioSwitcher";
+import { VpnPreviewShot } from "@/components/VpnPreviewShot";
 
 const portfolioShots = [
+  {
+    type: "interactive",
+    src: "/vpn-preview",
+    alt: "Interactive VPN application portfolio shot",
+  },
   {
     type: "image",
     src: "/portfolio/visual-01.svg",
@@ -119,6 +125,7 @@ type HomeTab = "visual" | "case-studies";
 type HomePortfolioContentProps = {
   tabLabels?: Partial<Record<HomeTab, string>>;
   caseStudiesNote?: string;
+  interactiveShotBadgeLabel?: string;
   gemraCaseStudyHref?: string;
   gemraCaseStudyTitle?: string;
   gemraCaseStudyDescription?: ReactNode;
@@ -132,6 +139,7 @@ type HomePortfolioContentProps = {
 export function HomePortfolioContent({
   tabLabels,
   caseStudiesNote,
+  interactiveShotBadgeLabel = "Clickable",
   gemraCaseStudyHref = "/gemra",
   gemraCaseStudyTitle = "Gemra — staking platform",
   gemraCaseStudyDescription = (
@@ -210,7 +218,29 @@ export function HomePortfolioContent({
               id={index === 1 ? "portfolio-shot-2" : undefined}
               className="overflow-hidden bg-[var(--surface-muted)]"
             >
-              {shot.type === "video" ? (
+              {shot.type === "interactive" ? (
+                <div className="relative">
+                  <div className="pointer-events-none absolute right-4 top-4 z-10 flex h-6 items-center rounded-full bg-[#FDFDFC] px-[10px] font-mono text-[12px] leading-4 font-medium uppercase text-[#5F5D68] shadow-[0_0_1px_rgba(0,0,0,0.08)]">
+                    {interactiveShotBadgeLabel}
+                  </div>
+                  <Image
+                    src="/portfolio/visual-vpn-mobile.png"
+                    alt={shot.alt}
+                    width={3024}
+                    height={1640}
+                    sizes="100vw"
+                    className="block h-auto w-full md:hidden"
+                  />
+                  <div className="hidden aspect-[1512/820] w-full items-center justify-center bg-[#F5F5F5] md:flex">
+                    <div
+                      className="aspect-[453/918] overflow-hidden rounded-[20px] bg-transparent"
+                      style={{ width: "clamp(220px, 24vw, 362px)" }}
+                    >
+                      <VpnPreviewShot />
+                    </div>
+                  </div>
+                </div>
+              ) : shot.type === "video" ? (
                 <div className="flex aspect-[1512/820] w-full items-center justify-center bg-[#F5F5F5]">
                   <video
                     autoPlay
@@ -257,7 +287,15 @@ export function HomePortfolioContent({
               href={gemraCaseStudyHref}
               className="group block cursor-pointer overflow-hidden rounded-[16px] md:rounded-[32px]"
             >
-              <div className="flex aspect-[1000/650] w-full max-w-[1000px] items-center justify-center rounded-[16px] bg-[#F5F5F5] md:rounded-[32px]">
+              <Image
+                src="/gemra-mobile-cover.svg"
+                alt="Gemra staking platform case study cover"
+                width={1000}
+                height={650}
+                sizes="(max-width: 767px) 100vw, 0px"
+                className="block h-auto w-full rounded-[16px] transition-transform duration-[240ms] ease-[ease] will-change-transform group-hover:scale-[1.01] motion-reduce:transition-none motion-reduce:group-hover:scale-100 md:hidden"
+              />
+              <div className="hidden aspect-[1000/650] w-full max-w-[1000px] items-center justify-center rounded-[32px] bg-[#F5F5F5] md:flex">
                 <video
                   autoPlay
                   loop

@@ -117,6 +117,7 @@ export default function RussianHome() {
               "case-studies": "Кейсы",
             }}
             caseStudiesNote="В процессе перевода"
+            interactiveShotBadgeLabel="Кликабельный"
             gemraCaseStudyHref="/gemra?from=ru"
             gemraCaseStudyTitle="Gemra — стейкинг платформа"
             gemraCaseStudyDescription={

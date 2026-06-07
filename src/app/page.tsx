@@ -1,5 +1,6 @@
 import { Suspense } from "react";
 import Image from "next/image";
+
 import { HomeActionButtons } from "@/components/HomeActionButtons";
 import { HomePortfolioContent } from "@/components/HomePortfolioContent";
 import { UpButton } from "@/components/UpButton";
@@ -135,7 +136,6 @@ export default function Home() {
         <Suspense fallback={null}>
           <HomePortfolioContent />
         </Suspense>
-
       </section>
 
       <UpButton />
