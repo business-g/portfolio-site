@@ -98,14 +98,6 @@ export function HomeActionButtons({
         >
           {labels?.telegram ?? "Telegram"}
         </Button>
-        <Button
-          href="/cv-bogdan-kv.pdf"
-          target="_blank"
-          rel="noreferrer"
-          tone="secondary"
-        >
-          {labels?.viewCv ?? "View CV"}
-        </Button>
         <Button tone="secondary" onClick={handleCopyEmail}>
           {labels?.copyEmail ?? "Copy Email"}
         </Button>
