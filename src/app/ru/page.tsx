@@ -114,6 +114,7 @@ export default function RussianHome() {
           <HomePortfolioContent
             tabLabels={{
               visual: "Визуал",
+              interactive: "Прототипы",
               "case-studies": "Кейсы",
             }}
             caseStudiesNote="В процессе перевода"

@@ -7,14 +7,23 @@ import type { ReactNode } from "react";
 import { useEffect, useState } from "react";
 
 import { PortfolioSwitcher } from "@/components/PortfolioSwitcher";
+import { PaymentFlowShot } from "@/components/PaymentFlowShot";
 import { VpnPreviewShot } from "@/components/VpnPreviewShot";
 
-const portfolioShots = [
+const interactiveShots = [
   {
     type: "interactive",
-    src: "/vpn-preview",
+    variant: "vpn",
     alt: "Interactive VPN application portfolio shot",
   },
+  {
+    type: "interactive",
+    variant: "payment-flow",
+    alt: "Interactive payment flow portfolio shot",
+  },
+] as const;
+
+const visualShots = [
   {
     type: "image",
     src: "/portfolio/visual-01.svg",
@@ -120,7 +129,7 @@ const portfolioShots = [
   },
 ] as const;
 
-type HomeTab = "visual" | "case-studies";
+type HomeTab = "visual" | "interactive" | "case-studies";
 
 type HomePortfolioContentProps = {
   tabLabels?: Partial<Record<HomeTab, string>>;
@@ -175,34 +184,150 @@ export function HomePortfolioContent({
 }: HomePortfolioContentProps = {}) {
   const searchParams = useSearchParams();
   const [manualTab, setManualTab] = useState<HomeTab | null>(null);
-  const queryTab =
-    searchParams.get("tab") === "case-studies" ? "case-studies" : "visual";
+  const [showInteractiveTab, setShowInteractiveTab] = useState(false);
+  const queryTab = (() => {
+    const tab = searchParams.get("tab");
+    if (tab === "interactive") return "interactive";
+    if (tab === "case-studies") return "case-studies";
+    return "visual";
+  })();
   const [hasVisitedCaseStudies, setHasVisitedCaseStudies] = useState(
     queryTab === "case-studies",
   );
+  const [hasVisitedInteractive, setHasVisitedInteractive] = useState(
+    queryTab === "interactive",
+  );
   const activeTab = manualTab ?? queryTab;
+  const resolvedActiveTab =
+    !showInteractiveTab && activeTab === "interactive" ? "visual" : activeTab;
   const shouldRenderCaseStudies =
-    activeTab === "case-studies" || hasVisitedCaseStudies;
+    resolvedActiveTab === "case-studies" || hasVisitedCaseStudies;
+  const shouldRenderInteractive =
+    showInteractiveTab &&
+    (resolvedActiveTab === "interactive" || hasVisitedInteractive);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(min-width: 768px)");
+    const syncTabs = () => {
+      const isDesktop = mediaQuery.matches;
+      setShowInteractiveTab(isDesktop);
+
+      if (!isDesktop && (manualTab ?? queryTab) === "interactive") {
+        setManualTab("visual");
+      }
+    };
+
+    syncTabs();
+    mediaQuery.addEventListener("change", syncTabs);
+
+    return () => mediaQuery.removeEventListener("change", syncTabs);
+  }, [manualTab, queryTab]);
 
   useEffect(() => {
     window.dispatchEvent(new Event("portfolio-content-change"));
-  }, [activeTab]);
+  }, [resolvedActiveTab]);
+
+  const visualTabShots = showInteractiveTab
+    ? visualShots
+    : [...interactiveShots, ...visualShots];
+
+  const renderPortfolioShot = (
+    shot: (typeof interactiveShots)[number] | (typeof visualShots)[number],
+    index: number,
+    portfolioShotAnchorIndex?: number,
+  ) => (
+    <div
+      key={shot.type === "interactive" ? `interactive-${shot.variant}` : shot.src}
+      id={index === portfolioShotAnchorIndex ? "portfolio-shot-2" : undefined}
+      className="overflow-hidden bg-[var(--surface-muted)]"
+    >
+      {shot.type === "interactive" ? (
+        <div className="relative">
+          <div className="pointer-events-none absolute right-4 top-4 z-10 flex h-6 items-center rounded-full bg-[#FDFDFC] px-[10px] font-mono text-[12px] leading-4 font-medium uppercase text-[#5F5D68] shadow-[0_0_1px_rgba(0,0,0,0.08)]">
+            {interactiveShotBadgeLabel}
+          </div>
+          {shot.variant === "vpn" ? (
+            <Image
+              src="/portfolio/visual-vpn-mobile.png"
+              alt={shot.alt}
+              width={3024}
+              height={1640}
+              sizes="100vw"
+              className="block h-auto w-full md:hidden"
+            />
+          ) : null}
+          <div
+            className={`aspect-[1512/820] w-full items-center justify-center bg-[#F5F5F5] ${
+              shot.variant === "vpn" ? "hidden md:flex" : "flex"
+            }`}
+          >
+            <div
+              className={`overflow-hidden rounded-[20px] bg-transparent ${
+                shot.variant === "vpn" ? "aspect-[453/918]" : "aspect-[602/646]"
+              }`}
+              style={{
+                width:
+                  shot.variant === "vpn"
+                    ? "clamp(220px, 24vw, 362px)"
+                    : "clamp(325px, 40vw, 575px)",
+              }}
+            >
+              {shot.variant === "vpn" ? <VpnPreviewShot /> : <PaymentFlowShot />}
+            </div>
+          </div>
+        </div>
+      ) : shot.type === "video" ? (
+        <div className="flex aspect-[1512/820] w-full items-center justify-center bg-[#F5F5F5]">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="none"
+            aria-label={shot.alt}
+            onLoadedMetadata={(event) => {
+              if ("playbackRate" in shot && shot.playbackRate) {
+                event.currentTarget.playbackRate = shot.playbackRate;
+              }
+            }}
+            className="block h-full w-full object-contain"
+          >
+            <source src={shot.src} type="video/mp4" />
+          </video>
+        </div>
+      ) : (
+        <Image
+          src={shot.src}
+          alt={shot.alt}
+          width={shot.width}
+          height={shot.height}
+          unoptimized={shot.src.endsWith(".svg")}
+          sizes="(max-width: 767px) calc(100vw - 2rem), (max-width: 1023px) calc(100vw - 3rem), 1416px"
+          className="block h-auto w-full"
+        />
+      )}
+    </div>
+  );
 
   return (
     <>
       <div className="mx-auto w-full md:max-w-[584px]">
         <div className="mt-12 md:mt-16 md:flex md:items-center md:gap-6">
           <PortfolioSwitcher
-            activeTab={activeTab}
+            activeTab={resolvedActiveTab}
             labels={tabLabels}
+            showInteractiveTab={showInteractiveTab}
             onTabChange={(tab) => {
               if (tab === "case-studies") {
                 setHasVisitedCaseStudies(true);
               }
+              if (tab === "interactive") {
+                setHasVisitedInteractive(true);
+              }
               setManualTab(tab);
             }}
           />
-          {activeTab === "case-studies" && caseStudiesNote ? (
+          {resolvedActiveTab === "case-studies" && caseStudiesNote ? (
             <p className="type-caption mt-3 hidden whitespace-nowrap text-[var(--text-body)] md:mt-0 md:block">
               {caseStudiesNote}
             </p>
@@ -210,76 +335,30 @@ export function HomePortfolioContent({
         </div>
       </div>
 
-      {activeTab === "visual" ? (
+      {resolvedActiveTab === "visual" ? (
         <div className="relative left-1/2 mt-6 flex w-screen max-w-none -translate-x-1/2 flex-col gap-2 px-0">
-          {portfolioShots.map((shot, index) => (
-            <div
-              key={shot.src}
-              id={index === 1 ? "portfolio-shot-2" : undefined}
-              className="overflow-hidden bg-[var(--surface-muted)]"
-            >
-              {shot.type === "interactive" ? (
-                <div className="relative">
-                  <div className="pointer-events-none absolute right-4 top-4 z-10 flex h-6 items-center rounded-full bg-[#FDFDFC] px-[10px] font-mono text-[12px] leading-4 font-medium uppercase text-[#5F5D68] shadow-[0_0_1px_rgba(0,0,0,0.08)]">
-                    {interactiveShotBadgeLabel}
-                  </div>
-                  <Image
-                    src="/portfolio/visual-vpn-mobile.png"
-                    alt={shot.alt}
-                    width={3024}
-                    height={1640}
-                    sizes="100vw"
-                    className="block h-auto w-full md:hidden"
-                  />
-                  <div className="hidden aspect-[1512/820] w-full items-center justify-center bg-[#F5F5F5] md:flex">
-                    <div
-                      className="aspect-[453/918] overflow-hidden rounded-[20px] bg-transparent"
-                      style={{ width: "clamp(220px, 24vw, 362px)" }}
-                    >
-                      <VpnPreviewShot />
-                    </div>
-                  </div>
-                </div>
-              ) : shot.type === "video" ? (
-                <div className="flex aspect-[1512/820] w-full items-center justify-center bg-[#F5F5F5]">
-                  <video
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    preload="none"
-                    aria-label={shot.alt}
-                    onLoadedMetadata={(event) => {
-                      if ("playbackRate" in shot && shot.playbackRate) {
-                        event.currentTarget.playbackRate = shot.playbackRate;
-                      }
-                    }}
-                    className="block h-full w-full object-contain"
-                  >
-                    <source src={shot.src} type="video/mp4" />
-                  </video>
-                </div>
-              ) : (
-                <Image
-                  src={shot.src}
-                  alt={shot.alt}
-                  width={shot.width}
-                  height={shot.height}
-                  unoptimized={shot.src.endsWith(".svg")}
-                  sizes="(max-width: 767px) calc(100vw - 2rem), (max-width: 1023px) calc(100vw - 3rem), 1416px"
-                  className="block h-auto w-full"
-                />
-              )}
-            </div>
-          ))}
+          {visualTabShots.map((shot, index) =>
+            renderPortfolioShot(shot, index, 1),
+          )}
+        </div>
+      ) : null}
+
+      {shouldRenderInteractive ? (
+        <div
+          aria-hidden={resolvedActiveTab !== "interactive"}
+          className={`relative left-1/2 mt-6 w-screen max-w-none -translate-x-1/2 flex-col gap-2 px-0 ${
+            resolvedActiveTab === "interactive" ? "flex" : "hidden"
+          }`}
+        >
+          {interactiveShots.map((shot, index) => renderPortfolioShot(shot, index))}
         </div>
       ) : null}
 
       {shouldRenderCaseStudies ? (
         <div
-          aria-hidden={activeTab !== "case-studies"}
+          aria-hidden={resolvedActiveTab !== "case-studies"}
           className={`mx-auto mt-6 max-w-[1000px] flex-col gap-12 md:gap-14 ${
-            activeTab === "case-studies" ? "flex" : "hidden"
+            resolvedActiveTab === "case-studies" ? "flex" : "hidden"
           }`}
         >
           <article className="bg-transparent">
@@ -324,7 +403,7 @@ export function HomePortfolioContent({
           </article>
 
           <article
-            id={activeTab === "case-studies" ? "portfolio-shot-2" : undefined}
+            id={resolvedActiveTab === "case-studies" ? "portfolio-shot-2" : undefined}
             className="bg-transparent"
           >
             <Link

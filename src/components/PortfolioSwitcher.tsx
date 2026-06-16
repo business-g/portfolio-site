@@ -8,6 +8,10 @@ import {
   type ChessKingIconHandle,
 } from "@/components/ui/chess-king";
 import {
+  CursorClickIcon,
+  type CursorClickIconHandle,
+} from "@/components/ui/cursor-click";
+import {
   FolderOpenIcon,
   type FolderOpenIconHandle,
 } from "@/components/ui/folder-open";
@@ -18,6 +22,12 @@ const tabs = [
     id: "visual",
     label: "Visual",
     Icon: ChessKingIcon,
+  },
+  {
+    id: "interactive",
+    label: "Interactive",
+    Icon: CursorClickIcon,
+    mobileHidden: true,
   },
   {
     id: "case-studies",
@@ -35,6 +45,7 @@ type PortfolioSwitcherProps = {
   defaultTab?: TabId;
   onTabChange?: (tab: TabId) => void;
   labels?: TabLabels;
+  showInteractiveTab?: boolean;
 };
 
 export function PortfolioSwitcher({
@@ -43,12 +54,17 @@ export function PortfolioSwitcher({
   defaultTab = "visual",
   onTabChange,
   labels,
+  showInteractiveTab = true,
 }: PortfolioSwitcherProps) {
   const [internalActiveTab, setInternalActiveTab] = useState<TabId>(defaultTab);
   const prefersReducedMotion = useReducedMotion();
   const chessKingRef = useRef<ChessKingIconHandle>(null);
+  const cursorClickRef = useRef<CursorClickIconHandle>(null);
   const folderRef = useRef<FolderOpenIconHandle>(null);
   const activeTab = controlledActiveTab ?? internalActiveTab;
+  const visibleTabs = tabs.filter(
+    (tab) => showInteractiveTab || tab.id !== "interactive"
+  );
 
   const handleTabChange = (tab: TabId) => {
     if (controlledActiveTab === undefined) {
@@ -67,9 +83,14 @@ export function PortfolioSwitcher({
       role="tablist"
       aria-label="Portfolio categories"
     >
-      {tabs.map(({ id, label, Icon }) => {
+      {visibleTabs.map(({ id, label, Icon }) => {
         const isActive = activeTab === id;
-        const iconRef = id === "visual" ? chessKingRef : folderRef;
+        const iconRef =
+          id === "visual"
+            ? chessKingRef
+            : id === "interactive"
+              ? cursorClickRef
+              : folderRef;
         const tabLabel = labels?.[id] ?? label;
 
         return (
