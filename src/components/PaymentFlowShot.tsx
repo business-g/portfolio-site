@@ -274,7 +274,6 @@ function getTokenIcon(token: Token) {
     SNX: "/payment-flow-preview/assets/tokens/SNX.svg",
     SUN: "/payment-flow-preview/assets/tokens/SUN.svg",
     TRX: ASSETS.tron,
-    TRUEUSD: "/payment-flow-preview/assets/tokens/TRUEUSD.svg" as never,
     TUSD: "/payment-flow-preview/assets/tokens/TUSD.svg",
     UNI: "/payment-flow-preview/assets/tokens/UNI.svg",
     USDC: "/payment-flow-preview/assets/tokens/USDC.svg",
