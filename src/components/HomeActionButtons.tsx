@@ -91,7 +91,7 @@ export function HomeActionButtons({
     <>
       <div className="mt-6 flex flex-wrap gap-3">
         <Button
-          href="https://t.me/bogdanktv"
+          href="https://t.me/kctv_b"
           target="_blank"
           rel="noreferrer"
           tone="primary"
