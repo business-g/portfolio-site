@@ -13,6 +13,11 @@ import { VpnPreviewShot } from "@/components/VpnPreviewShot";
 const interactiveShots = [
   {
     type: "interactive",
+    variant: "liquidity-pool",
+    alt: "Interactive liquidity pool portfolio shot",
+  },
+  {
+    type: "interactive",
     variant: "vpn",
     alt: "Interactive VPN application portfolio shot",
   },
@@ -263,16 +268,34 @@ export function HomePortfolioContent({
           >
             <div
               className={`overflow-hidden rounded-[20px] bg-transparent ${
-                shot.variant === "vpn" ? "aspect-[453/918]" : "aspect-[602/646]"
+                shot.variant === "vpn"
+                  ? "aspect-[453/918]"
+                  : shot.variant === "payment-flow"
+                    ? "aspect-[602/646]"
+                    : "aspect-[1196/616]"
               }`}
               style={{
                 width:
                   shot.variant === "vpn"
-                    ? "clamp(220px, 24vw, 362px)"
-                    : "clamp(325px, 40vw, 575px)",
+                    ? "clamp(198px, 21.6vw, 326px)"
+                    : shot.variant === "payment-flow"
+                      ? "clamp(325px, 40vw, 575px)"
+                      : "1196px",
               }}
             >
-              {shot.variant === "vpn" ? <VpnPreviewShot /> : <PaymentFlowShot />}
+              {shot.variant === "vpn" ? (
+                <VpnPreviewShot />
+              ) : shot.variant === "payment-flow" ? (
+                <PaymentFlowShot />
+              ) : (
+                <iframe
+                  src="/liquidity-pool-preview"
+                  title={shot.alt}
+                  loading="lazy"
+                  scrolling="no"
+                  className="block h-full w-full border-0 bg-transparent"
+                />
+              )}
             </div>
           </div>
         </div>
