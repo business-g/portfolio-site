@@ -125,13 +125,6 @@ const visualShots = [
     width: 2048,
     height: 1384,
   },
-  {
-    type: "image",
-    src: "/portfolio/visual-09.svg",
-    alt: "Portfolio visual shot nine",
-    width: 2048,
-    height: 1384,
-  },
 ] as const;
 
 type HomeTab = "visual" | "interactive" | "case-studies";
