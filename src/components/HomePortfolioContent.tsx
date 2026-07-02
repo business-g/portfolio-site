@@ -37,11 +37,6 @@ const visualShots = [
     height: 1080,
   },
   {
-    type: "video",
-    src: "/portfolio/transfer-flow.mp4",
-    alt: "Transfer flow portfolio motion shot",
-  },
-  {
     type: "image",
     src: "/portfolio/visual-02.svg",
     alt: "SaaS dashboard portfolio shot",
@@ -54,6 +49,11 @@ const visualShots = [
     alt: "DEX portfolio shot",
     width: 1648,
     height: 1113,
+  },
+  {
+    type: "video",
+    src: "/portfolio/transfer-flow.mp4",
+    alt: "Transfer flow portfolio motion shot",
   },
   {
     type: "video",
