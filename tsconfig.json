@@ -30,5 +30,15 @@
     ".next/dev/types/**/*.ts",
     "**/*.mts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules",
+    ".tmp-*",
+    "card-customizer-prototype",
+    "crypto-payment-hero-prototype",
+    "event-explorer",
+    "liquidity-pool",
+    "payment-flow-prototype",
+    "snow-promo-code-demo",
+    "touch-the-grass-demo"
+  ]
 }

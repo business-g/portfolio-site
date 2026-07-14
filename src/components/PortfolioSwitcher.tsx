@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "motion/react";
-import { useRef, useState } from "react";
+import { Fragment, useRef, useState } from "react";
 
 import {
   ChessKingIcon,
@@ -22,6 +22,7 @@ const tabs = [
     id: "visual",
     label: "Visual",
     Icon: ChessKingIcon,
+    mobileHidden: false,
   },
   {
     id: "interactive",
@@ -33,11 +34,13 @@ const tabs = [
     id: "case-studies",
     label: "Case studies",
     Icon: FolderOpenIcon,
+    mobileHidden: false,
   },
 ] as const;
 
 type TabId = (typeof tabs)[number]["id"];
 type TabLabels = Partial<Record<TabId, string>>;
+type SwitcherVariant = "plain" | "pill";
 
 type PortfolioSwitcherProps = {
   className?: string;
@@ -46,6 +49,7 @@ type PortfolioSwitcherProps = {
   onTabChange?: (tab: TabId) => void;
   labels?: TabLabels;
   showInteractiveTab?: boolean;
+  variant?: SwitcherVariant;
 };
 
 export function PortfolioSwitcher({
@@ -55,6 +59,7 @@ export function PortfolioSwitcher({
   onTabChange,
   labels,
   showInteractiveTab = true,
+  variant = "plain",
 }: PortfolioSwitcherProps) {
   const [internalActiveTab, setInternalActiveTab] = useState<TabId>(defaultTab);
   const prefersReducedMotion = useReducedMotion();
@@ -74,6 +79,67 @@ export function PortfolioSwitcher({
     onTabChange?.(tab);
   };
 
+  const getIconRef = (id: TabId) =>
+    id === "visual"
+      ? chessKingRef
+      : id === "interactive"
+        ? cursorClickRef
+        : folderRef;
+
+  if (variant === "plain") {
+    return (
+      <div
+        className={cn("inline-flex items-center gap-4", className)}
+        role="tablist"
+        aria-label="Portfolio categories"
+      >
+        {visibleTabs.map(({ id, label, Icon, mobileHidden }, index) => {
+          const isActive = activeTab === id;
+          const iconRef = getIconRef(id);
+          const tabLabel = labels?.[id] ?? label;
+
+          return (
+            <Fragment key={id}>
+              {index > 0 ? (
+                <span
+                  aria-hidden="true"
+                  className={`size-1 shrink-0 rounded-full bg-[#D1D1D1] ${
+                    id === "interactive" ? "hidden md:block" : ""
+                  }`}
+                />
+              ) : null}
+              <button
+                type="button"
+                role="tab"
+                aria-selected={isActive}
+                aria-controls={`${id}-panel`}
+                id={`${id}-tab`}
+                onClick={() => handleTabChange(id)}
+                onMouseEnter={() => iconRef.current?.startAnimation()}
+                onMouseLeave={() => iconRef.current?.stopAnimation()}
+                className={`type-body-medium inline-flex cursor-pointer appearance-none items-center gap-2 border-0 bg-transparent p-0 transition-[color,transform] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] active:scale-[0.97] focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#C8C6CF] motion-reduce:transition-none motion-reduce:active:scale-100 ${
+                  mobileHidden ? "hidden md:inline-flex" : ""
+                } ${
+                  isActive
+                    ? "text-[var(--text-strong)]"
+                    : "text-[var(--text-body)]"
+                }`}
+              >
+                <Icon
+                  ref={iconRef}
+                  size={18}
+                  strokeWidth={1.5}
+                  className="shrink-0"
+                />
+                {tabLabel}
+              </button>
+            </Fragment>
+          );
+        })}
+      </div>
+    );
+  }
+
   return (
     <div
       className={cn(
@@ -85,12 +151,7 @@ export function PortfolioSwitcher({
     >
       {visibleTabs.map(({ id, label, Icon }) => {
         const isActive = activeTab === id;
-        const iconRef =
-          id === "visual"
-            ? chessKingRef
-            : id === "interactive"
-              ? cursorClickRef
-              : folderRef;
+        const iconRef = getIconRef(id);
         const tabLabel = labels?.[id] ?? label;
 
         return (
@@ -127,7 +188,7 @@ export function PortfolioSwitcher({
             <span className="relative z-10 flex items-center gap-2">
               <Icon
                 ref={iconRef}
-                size={16}
+                size={18}
                 strokeWidth={1.5}
                 className={isActive ? "text-[var(--text-strong)]" : "text-[var(--text-body)]"}
               />

@@ -31,29 +31,57 @@ const interactiveShots = [
 const visualShots = [
   {
     type: "image",
-    src: "/portfolio/visual-01.svg",
-    alt: "Router admin panel portfolio shot",
-    width: 1622,
-    height: 1080,
+    src: "/portfolio/visual-3x-01.webp",
+    alt: "Crypto wallet dashboard portfolio shot",
+    width: 3360,
+    height: 2063,
   },
   {
     type: "image",
-    src: "/portfolio/visual-02.svg",
-    alt: "SaaS dashboard portfolio shot",
-    width: 1120,
-    height: 746,
+    src: "/portfolio/visual-3x-02.webp",
+    alt: "SaaS analytics dashboard portfolio shot",
+    width: 3360,
+    height: 2064,
   },
   {
     type: "image",
-    src: "/portfolio/visual-03.svg",
-    alt: "DEX portfolio shot",
-    width: 1648,
-    height: 1113,
+    src: "/portfolio/visual-3x-03.webp",
+    alt: "Crypto exchange dashboard portfolio shot",
+    width: 3360,
+    height: 2064,
+  },
+  {
+    type: "image",
+    src: "/portfolio/visual-3x-04.webp",
+    alt: "Router admin dashboard portfolio shot",
+    width: 3360,
+    height: 2064,
   },
   {
     type: "video",
     src: "/portfolio/transfer-flow.mp4",
     alt: "Transfer flow portfolio motion shot",
+  },
+  {
+    type: "image",
+    src: "/portfolio/visual-3x-05.webp",
+    alt: "Mobile crypto wallet portfolio shot",
+    width: 3360,
+    height: 2064,
+  },
+  {
+    type: "image",
+    src: "/portfolio/visual-3x-06.webp",
+    alt: "Mobile VPN application portfolio shot",
+    width: 3360,
+    height: 2064,
+  },
+  {
+    type: "image",
+    src: "/portfolio/visual-3x-07.webp",
+    alt: "Wallet connection interface portfolio shot",
+    width: 3360,
+    height: 2064,
   },
   {
     type: "video",
@@ -62,43 +90,15 @@ const visualShots = [
   },
   {
     type: "image",
-    src: "/portfolio/visual-08.svg",
-    alt: "Portfolio visual shot eight",
-    width: 2048,
-    height: 1384,
-  },
-  {
-    type: "image",
-    src: "/portfolio/visual-05.svg",
-    alt: "Settings portfolio shot",
-    width: 2048,
-    height: 1384,
-  },
-  {
-    type: "image",
-    src: "/portfolio/visual-06.svg",
-    alt: "Portfolio visual shot six",
-    width: 2048,
-    height: 1384,
-  },
-  {
-    type: "image",
-    src: "/portfolio/visual-04.svg",
-    alt: "Portfolio visual shot four",
-    width: 2048,
-    height: 1384,
-  },
-  {
-    type: "image",
-    src: "/portfolio/visual-07.svg",
-    alt: "Portfolio visual shot seven",
-    width: 2048,
-    height: 1384,
+    src: "/portfolio/visual-3x-08.webp",
+    alt: "Messenger settings portfolio shot",
+    width: 3360,
+    height: 2064,
   },
   {
     type: "video",
-    src: "/portfolio/send-message-updated-v2.mp4",
-    alt: "Send message portfolio motion shot",
+    src: "/portfolio/no-zoom-edited-v2.mp4",
+    alt: "Messaging interface portfolio motion shot",
     playbackRate: 1.25,
   },
   {
@@ -113,17 +113,10 @@ const visualShots = [
   },
   {
     type: "image",
-    src: "/portfolio/features-visual.svg",
-    alt: "Features visual portfolio shot",
-    width: 2048,
-    height: 1384,
-  },
-  {
-    type: "image",
-    src: "/portfolio/hero-visual.png",
-    alt: "Hero visual portfolio shot",
-    width: 2048,
-    height: 1384,
+    src: "/portfolio/visual-3x-09.webp",
+    alt: "Crypto wallet landing page portfolio shot",
+    width: 3360,
+    height: 2064,
   },
 ] as const;
 
@@ -182,7 +175,8 @@ export function HomePortfolioContent({
 }: HomePortfolioContentProps = {}) {
   const searchParams = useSearchParams();
   const [manualTab, setManualTab] = useState<HomeTab | null>(null);
-  const [showInteractiveTab, setShowInteractiveTab] = useState(false);
+  const [showInteractiveTab, setShowInteractiveTab] = useState(true);
+  const [hasLoadedFirstVisual, setHasLoadedFirstVisual] = useState(false);
   const queryTab = (() => {
     const tab = searchParams.get("tab");
     if (tab === "interactive") return "interactive";
@@ -225,19 +219,22 @@ export function HomePortfolioContent({
     window.dispatchEvent(new Event("portfolio-content-change"));
   }, [resolvedActiveTab]);
 
-  const visualTabShots = showInteractiveTab
-    ? visualShots
-    : [...interactiveShots, ...visualShots];
+  const visualTabShots = visualShots;
 
   const renderPortfolioShot = (
     shot: (typeof interactiveShots)[number] | (typeof visualShots)[number],
     index: number,
     portfolioShotAnchorIndex?: number,
-  ) => (
-    <div
+  ) => {
+    const isFirstVisual = portfolioShotAnchorIndex !== undefined && index === 0;
+
+    return (
+      <div
       key={shot.type === "interactive" ? `interactive-${shot.variant}` : shot.src}
       id={index === portfolioShotAnchorIndex ? "portfolio-shot-2" : undefined}
-      className="overflow-hidden bg-[var(--surface-muted)]"
+      className={`overflow-hidden rounded-[32px] bg-[var(--surface-muted)] ${
+        isFirstVisual ? "relative" : ""
+      }`}
     >
       {shot.type === "interactive" ? (
         <div className="relative">
@@ -293,7 +290,7 @@ export function HomePortfolioContent({
           </div>
         </div>
       ) : shot.type === "video" ? (
-        <div className="flex aspect-[1512/820] w-full items-center justify-center bg-[#F5F5F5]">
+        <div className="flex aspect-[4480/2752] w-full items-center justify-center bg-[#F5F5F5]">
           <video
             autoPlay
             loop
@@ -312,23 +309,47 @@ export function HomePortfolioContent({
           </video>
         </div>
       ) : (
-        <Image
-          src={shot.src}
-          alt={shot.alt}
-          width={shot.width}
-          height={shot.height}
-          unoptimized={shot.src.endsWith(".svg")}
-          sizes="(max-width: 767px) calc(100vw - 2rem), (max-width: 1023px) calc(100vw - 3rem), 1416px"
-          className="block h-auto w-full"
-        />
+        <>
+          {isFirstVisual ? (
+            <Image
+                src="/portfolio/visual-3x-01-placeholder.webp"
+              alt=""
+              width={64}
+              height={39}
+              unoptimized
+              aria-hidden="true"
+              className={`portfolio-first-visual-placeholder pointer-events-none absolute inset-0 h-full w-full scale-110 object-cover ${
+                hasLoadedFirstVisual ? "is-loaded" : ""
+              }`}
+            />
+          ) : null}
+          <Image
+              src={shot.src}
+            alt={shot.alt}
+              width={shot.width}
+              height={shot.height}
+            unoptimized
+            priority={isFirstVisual}
+            sizes="(max-width: 1119px) 100vw, 1120px"
+            onLoad={isFirstVisual ? () => setHasLoadedFirstVisual(true) : undefined}
+            className={`block h-auto w-full ${
+              isFirstVisual
+                ? hasLoadedFirstVisual
+                  ? "portfolio-first-visual is-loaded"
+                  : "portfolio-first-visual"
+                : ""
+            }`}
+          />
+        </>
       )}
-    </div>
-  );
+      </div>
+    );
+  };
 
   return (
     <>
-      <div className="mx-auto w-full md:max-w-[584px]">
-        <div className="mt-12 md:mt-16 md:flex md:items-center md:gap-6">
+      <div className="mx-auto w-full px-4 md:max-w-[508px] md:px-0">
+        <div className="home-reveal mt-12 md:mt-16 md:flex md:items-center md:gap-6" style={{ animationDelay: "180ms" }}>
           <PortfolioSwitcher
             activeTab={resolvedActiveTab}
             labels={tabLabels}
@@ -352,7 +373,12 @@ export function HomePortfolioContent({
       </div>
 
       {resolvedActiveTab === "visual" ? (
-        <div className="relative left-1/2 mt-6 flex w-screen max-w-none -translate-x-1/2 flex-col gap-2 px-0">
+        <div className="home-reveal-gallery mx-auto mt-6 flex w-full max-w-[1120px] flex-col gap-2" style={{ animationDelay: "220ms" }}>
+          <div className="flex flex-col gap-2 md:hidden">
+            {interactiveShots.map((shot, index) =>
+              renderPortfolioShot(shot, index),
+            )}
+          </div>
           {visualTabShots.map((shot, index) =>
             renderPortfolioShot(shot, index, 1),
           )}
@@ -362,7 +388,7 @@ export function HomePortfolioContent({
       {shouldRenderInteractive ? (
         <div
           aria-hidden={resolvedActiveTab !== "interactive"}
-          className={`relative left-1/2 mt-6 w-screen max-w-none -translate-x-1/2 flex-col gap-2 px-0 ${
+          className={`mx-auto mt-6 w-full max-w-[1120px] flex-col gap-2 ${
             resolvedActiveTab === "interactive" ? "flex" : "hidden"
           }`}
         >
@@ -373,7 +399,7 @@ export function HomePortfolioContent({
       {shouldRenderCaseStudies ? (
         <div
           aria-hidden={resolvedActiveTab !== "case-studies"}
-          className={`mx-auto mt-6 max-w-[1000px] flex-col gap-12 md:gap-14 ${
+          className={`mx-auto mt-6 max-w-[1000px] flex-col gap-12 px-4 md:gap-14 md:px-0 ${
             resolvedActiveTab === "case-studies" ? "flex" : "hidden"
           }`}
         >

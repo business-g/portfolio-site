@@ -1,35 +1,7 @@
 import { Suspense } from "react";
 import Image from "next/image";
-import { HomeActionButtons } from "@/components/HomeActionButtons";
 import { HomePortfolioContent } from "@/components/HomePortfolioContent";
 import { UpButton } from "@/components/UpButton";
-
-const stackItems = [
-  {
-    label: "Figma",
-    src: "/stack-figma.svg",
-  },
-  {
-    label: "Claude code",
-    src: "/stack-claude-code.svg",
-  },
-  {
-    label: "Codex",
-    src: "/stack-codex.svg",
-  },
-  {
-    label: "Jitter",
-    src: "/stack-jitter.svg",
-  },
-  {
-    label: "Pencil",
-    src: "/stack-pencil.svg",
-  },
-  {
-    label: "Midjourney",
-    src: "/stack-midjourney.svg",
-  },
-] as const;
 
 export default function RussianHome() {
   return (
@@ -37,17 +9,17 @@ export default function RussianHome() {
       id="top"
       className="relative min-h-screen overflow-x-hidden bg-[var(--page-background)] pb-8"
     >
-      <section className="mx-auto max-w-[1512px] px-4 pt-4 md:px-6 md:pt-[4.5rem] lg:px-12">
-        <div className="mx-auto w-full md:max-w-[584px]">
-          <div className="relative inline-flex">
+      <section className="mx-auto max-w-[1120px] pt-4 md:pt-[4.5rem]">
+        <div className="mx-auto w-full px-4 md:max-w-[508px] md:px-0">
+          <div className="home-reveal relative inline-flex" style={{ animationDelay: "0ms" }}>
             <Image
-              src="/site-avatar-main.png"
+              src="/avatar-site.webp"
               alt="Bogdan avatar"
-              width={52}
-              height={52}
-              sizes="52px"
+              width={60}
+              height={60}
+              sizes="60px"
               priority
-              className="rounded-full object-cover shadow-[var(--shadow-soft)]"
+              className="size-[60px] rounded-full object-cover shadow-[var(--shadow-soft)]"
             />
             <div className="absolute bottom-0 right-[-4px] size-5 overflow-hidden rounded-[4px] bg-white shadow-[0_0_1px_rgba(0,0,0,0.12)]">
               {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -64,11 +36,11 @@ export default function RussianHome() {
             </div>
           </div>
 
-          <div className="mt-4 max-w-[520px] space-y-3">
-            <p className="type-body-large text-[var(--text-strong)]">
+          <div className="mt-4 max-w-[508px] space-y-3">
+            <p className="home-reveal type-body-large text-[var(--text-strong)]" style={{ animationDelay: "40ms" }}>
               Привет, я Богдан — продуктовый дизайнер с 6+ годами опыта.
             </p>
-            <p className="type-body-large text-[var(--text-body)]">
+            <p className="home-reveal type-body-large text-[var(--text-body)]" style={{ animationDelay: "75ms" }}>
               Более 10 запущенных B2B- и B2C-продуктов. В числе проектов
               криптокошелёк, стейкинг-платформы, VPN-приложение,
               блокчейн-эксплорер, маркетплейс, роутер-админка, корпоративный
@@ -76,39 +48,6 @@ export default function RussianHome() {
             </p>
           </div>
 
-          <HomeActionButtons
-            labels={{
-              viewCv: "Смотреть CV",
-              copyEmail: "Скопировать Email",
-            }}
-          />
-
-          <div className="relative mt-12 h-[105px] text-[var(--text-body)] md:mt-16 md:h-[79px]">
-            <div className="absolute left-0 right-0 top-0 flex items-center gap-3">
-              <span className="type-caption uppercase">Стек</span>
-              <span className="h-px flex-1 bg-[var(--border-soft)]" />
-            </div>
-            <div className="absolute left-0 top-7 flex w-[calc(100%-4px)] flex-wrap items-center gap-x-5 gap-y-3 md:top-8 md:w-auto md:flex-nowrap">
-              {stackItems.map((item) => (
-                <div
-                  key={item.label}
-                  className="type-body-large flex shrink-0 items-center gap-[5px] whitespace-nowrap"
-                >
-                  <span className="flex size-4 shrink-0 items-center justify-center">
-                    <Image
-                      src={item.src}
-                      alt=""
-                      width={16}
-                      height={16}
-                      className="size-4"
-                    />
-                  </span>
-                  <span>{item.label}</span>
-                </div>
-              ))}
-            </div>
-            <span className="absolute inset-x-0 bottom-0 h-px bg-[var(--border-soft)]" />
-          </div>
         </div>
         <Suspense fallback={null}>
           <HomePortfolioContent

@@ -122,11 +122,19 @@ export function UpButton() {
     <button
       type="button"
       aria-label="Scroll to top"
-      className={`fixed bottom-0 left-6 hidden h-[77px] w-[126px] cursor-pointer appearance-none border-0 bg-transparent p-0 outline-none ring-0 transition-[transform,opacity,filter] duration-200 will-change-transform focus:outline-none focus-visible:outline-none focus-visible:ring-0 lg:block ${
+      className={`fixed bottom-6 left-6 hidden size-auto h-[68px] w-10 cursor-pointer appearance-none flex-col items-center justify-center gap-1 rounded-full border-0 bg-white p-0 text-[14px] leading-5 font-medium text-[#5F5D68] outline-none ring-0 transition-[transform,opacity,filter,box-shadow] duration-150 ease-out will-change-transform focus:outline-none focus-visible:outline-none focus-visible:ring-0 lg:flex ${
         isVisible
           ? "translate-y-0 opacity-100 blur-0 ease-[cubic-bezier(0.215,0.61,0.355,1)]"
           : "translate-y-full opacity-0 blur-[6px] ease-[cubic-bezier(0.215,0.61,0.355,1)] pointer-events-none"
+      } ${
+        isPressed
+          ? "shadow-[inset_0_0_3px_rgba(0,0,0,0.25)]"
+          : "shadow-[0_0_1px_rgba(0,0,0,0.4),0_2px_1px_rgba(0,0,0,0.04)]"
       } motion-reduce:translate-y-0 motion-reduce:opacity-100 motion-reduce:blur-0 motion-reduce:transition-none`}
+      onPointerDown={() => setIsPressed(true)}
+      onPointerUp={() => setIsPressed(false)}
+      onPointerCancel={() => setIsPressed(false)}
+      onPointerLeave={() => setIsPressed(false)}
       onClick={() => {
         triggerPress();
         scrollToTop();
@@ -135,17 +143,11 @@ export function UpButton() {
       <Image
         src="/up-button-arrow.svg"
         alt=""
-        width={24}
-        height={24}
-        className="absolute left-[51px] top-[11px] size-6"
+        width={16}
+        height={16}
+        className="size-4"
       />
-      <span
-        className={`absolute left-1/2 top-[39px] flex size-6 -translate-x-1/2 items-center justify-center overflow-hidden rounded-[4px] bg-white text-[12px] leading-[16px] font-medium text-[#5F5D68] shadow-[var(--shadow-soft)] will-change-transform transition-transform duration-150 ease-[cubic-bezier(0.215,0.61,0.355,1)] motion-reduce:transition-none ${
-          isPressed ? "scale-[0.96]" : "scale-100"
-        }`}
-      >
-        W
-      </span>
+      <span>W</span>
     </button>
   );
 }

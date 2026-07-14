@@ -1,56 +1,9 @@
 import { Suspense } from "react";
 import Image from "next/image";
 
-import { HomeActionButtons } from "@/components/HomeActionButtons";
+import { ContactLink } from "@/components/ContactLink";
 import { HomePortfolioContent } from "@/components/HomePortfolioContent";
 import { UpButton } from "@/components/UpButton";
-
-const stackItems = [
-  {
-    label: "Figma",
-    src: "/stack-figma.svg",
-  },
-  {
-    label: "Claude code",
-    src: "/stack-claude-code.svg",
-  },
-  {
-    label: "Codex",
-    src: "/stack-codex.svg",
-  },
-  {
-    label: "Jitter",
-    src: "/stack-jitter.svg",
-  },
-  {
-    label: "Pencil",
-    src: "/stack-pencil.svg",
-  },
-  {
-    label: "Midjourney",
-    src: "/stack-midjourney.svg",
-  },
-] as const;
-
-function InlineArrowRight() {
-  return (
-    <svg
-      aria-hidden="true"
-      viewBox="0 0 10 8"
-      className="mx-0.5 inline-block h-2 w-2.5 align-[0.02em]"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M1 4H8M8 4L5.5 1.5M8 4L5.5 6.5"
-        stroke="currentColor"
-        strokeWidth="1.25"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
 
 export default function Home() {
   return (
@@ -58,17 +11,17 @@ export default function Home() {
       id="top"
       className="relative min-h-screen overflow-x-hidden bg-[var(--page-background)] pb-8"
     >
-      <section className="mx-auto max-w-[1512px] px-4 pt-4 md:px-6 md:pt-[4.5rem] lg:px-12">
-        <div className="mx-auto w-full md:max-w-[584px]">
-          <div className="relative inline-flex">
+      <section className="mx-auto max-w-[1120px] pt-4 md:pt-[4.5rem]">
+        <div className="mx-auto w-full px-4 md:max-w-[508px] md:px-0">
+          <div className="home-reveal relative inline-flex" style={{ animationDelay: "0ms" }}>
             <Image
-              src="/site-avatar-main.png"
+              src="/avatar-site.webp"
               alt="Bogdan avatar"
-              width={52}
-              height={52}
-              sizes="52px"
+              width={60}
+              height={60}
+              sizes="60px"
               priority
-              className="rounded-full object-cover shadow-[var(--shadow-soft)]"
+              className="size-[60px] rounded-full object-cover shadow-[var(--shadow-soft)]"
             />
             <div className="absolute bottom-0 right-[-4px] size-5 overflow-hidden rounded-[4px] bg-white shadow-[0_0_1px_rgba(0,0,0,0.12)]">
               {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -85,52 +38,51 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="mt-4 max-w-[520px] space-y-3">
-            <p className="type-body-large text-[var(--text-strong)]">
-              Hey, I’m Bogdan, a product designer.
+          <div className="mt-4 max-w-[508px] space-y-3">
+            <p className="home-reveal type-body-large text-[var(--text-strong)]" style={{ animationDelay: "40ms" }}>
+              Hey, I’m Bogdan, a&nbsp;product designer.
             </p>
-            <p className="type-body-large text-[var(--text-body)]">
-              I’ve worked on products from 0
-              <InlineArrowRight />
-              1 and kept improving them after launch.
+            <p className="home-reveal type-body-large text-[var(--text-body)]" style={{ animationDelay: "75ms" }}>
+              I like getting into a product early, understanding how it works,
+              and helping&nbsp;shape ideas into thoughtful, usable experiences.
             </p>
-            <p className="type-body-large text-[var(--text-body)]">
-              Most of my experience is in Web3 and products with complex logic:
-              dashboards, crypto wallet, VPN apps, and admin panels.
+            <p className="home-reveal type-body-large text-[var(--text-body)]" style={{ animationDelay: "110ms" }}>
+              I care a lot about interaction, motion, and the small details that
+              make a&nbsp;product feel polished. AI is part of my design process,
+              from early exploration to production-ready prototypes.
             </p>
-            <p className="type-body-large text-[var(--text-body)]">
-              I treat design as a question of timing and payoff: what needs to be
-              solid now, what can ship lean, and what’s still too early to overbuild.
+            <p className="home-reveal type-body-large text-[var(--text-body)]" style={{ animationDelay: "145ms" }}>
+              My experience includes working with startups and product teams
+              in&nbsp;Web3, HR tech, DevTools, workplace software, and e-commerce.
             </p>
-          </div>
-
-          <HomeActionButtons />
-
-          <div className="relative mt-12 h-[105px] text-[var(--text-body)] md:mt-16 md:h-[79px]">
-            <span className="type-caption absolute left-0 top-0 uppercase">
-              Stack
-            </span>
-            <span className="absolute left-12 top-2 h-px w-[calc(100%-3rem)] bg-[var(--border-soft)]" />
-            <div className="absolute left-0 top-7 flex w-[calc(100%-4px)] flex-wrap items-center gap-x-5 gap-y-3 md:top-8 md:w-auto md:flex-nowrap">
-              {stackItems.map((item) => (
-                <div
-                  key={item.label}
-                  className="type-body-large flex shrink-0 items-center gap-[5px] whitespace-nowrap"
-                >
-                  <span className="flex size-4 shrink-0 items-center justify-center">
-                    <Image
-                      src={item.src}
-                      alt=""
-                      width={16}
-                      height={16}
-                      className="size-4"
-                    />
-                  </span>
-                  <span>{item.label}</span>
-                </div>
-              ))}
-            </div>
-            <span className="absolute inset-x-0 bottom-0 h-px bg-[var(--border-soft)]" />
+            <p className="home-reveal type-body-large text-[var(--text-body)]" style={{ animationDelay: "180ms" }}>
+              You can reach me on{" "}
+              <ContactLink
+                href="https://x.com/kctv_b"
+                target="_blank"
+                rel="noreferrer"
+                lineClassName="contact-link-line pointer-events-none absolute left-1/2 top-[calc(100%+1px)] block h-1 w-[62px] -translate-x-1/2 bg-[#0D0D0D] [mask-image:url('/link-line.svg')] [mask-repeat:no-repeat] [mask-size:100%_100%] [-webkit-mask-image:url('/link-line.svg')] [-webkit-mask-repeat:no-repeat] [-webkit-mask-size:100%_100%]"
+              >
+                X (Twitter)
+              </ContactLink>
+              ,{" "}
+              <ContactLink
+                href="https://t.me/kctv_b"
+                target="_blank"
+                rel="noreferrer"
+                lineClassName="contact-link-line pointer-events-none absolute left-1/2 top-[calc(100%+1px)] block h-1 w-[62px] -translate-x-1/2 bg-[#2DA0D9] [mask-image:url('/link-line.svg')] [mask-repeat:no-repeat] [mask-size:100%_100%] [-webkit-mask-image:url('/link-line.svg')] [-webkit-mask-repeat:no-repeat] [-webkit-mask-size:100%_100%]"
+              >
+                Telegram
+              </ContactLink>
+              , or by{" "}
+              <ContactLink
+                href="mailto:exlambo@gmail.com"
+                lineClassName="contact-link-line pointer-events-none absolute left-1/2 top-[calc(100%+1px)] block h-[5px] w-[38px] -translate-x-1/2 bg-[#F4B342] [mask-image:url('/email-line.svg')] [mask-repeat:no-repeat] [mask-size:100%_100%] [-webkit-mask-image:url('/email-line.svg')] [-webkit-mask-repeat:no-repeat] [-webkit-mask-size:100%_100%]"
+              >
+                Email
+              </ContactLink>
+              .
+            </p>
           </div>
         </div>
         <Suspense fallback={null}>

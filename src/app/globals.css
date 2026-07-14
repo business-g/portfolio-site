@@ -133,6 +133,114 @@ a {
   text-decoration: none;
 }
 
+@keyframes home-reveal {
+  from {
+    opacity: 0;
+    transform: scale(1.08);
+    filter: blur(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
+  }
+}
+
+.home-reveal {
+  animation: home-reveal 550ms cubic-bezier(0.23, 1, 0.32, 1) both;
+  will-change: transform, opacity, filter;
+}
+
+.home-reveal-gallery {
+  animation: home-reveal-gallery 260ms ease-out both;
+  will-change: opacity;
+}
+
+@keyframes home-reveal-gallery {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.portfolio-first-visual {
+  opacity: 0;
+  transition: opacity 300ms ease-out;
+  will-change: opacity;
+}
+
+.portfolio-first-visual.is-loaded {
+  opacity: 1;
+}
+
+.portfolio-first-visual-placeholder {
+  opacity: 1;
+  transition: opacity 180ms ease-out;
+}
+
+.portfolio-first-visual-placeholder.is-loaded {
+  opacity: 0;
+}
+
+@keyframes contact-link-line-redraw {
+  0% {
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+  }
+
+  28% {
+    clip-path: inset(0 0 0 0);
+    opacity: 0;
+  }
+
+  29% {
+    clip-path: inset(0 100% 0 0);
+    opacity: 1;
+  }
+
+  100% {
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .contact-link-line {
+    will-change: clip-path, opacity;
+  }
+
+  .contact-link:hover .contact-link-line {
+    animation: contact-link-line-redraw 280ms ease;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-reveal {
+    animation: none;
+  }
+
+  .home-reveal-gallery {
+    animation: none;
+  }
+
+  .portfolio-first-visual {
+    opacity: 1;
+    transition: none;
+  }
+
+  .portfolio-first-visual-placeholder {
+    display: none;
+  }
+
+  .contact-link-line {
+    animation: none;
+  }
+}
+
 ::selection {
   background: rgba(158, 125, 255, 0.18);
 }
